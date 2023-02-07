@@ -1,8 +1,11 @@
-import './styles.css';
-import ContentLayout from './components/ContentLayout';
+// import './styles.css';
+import './styles/normalize.css';
 
+// import ContentLayout from './components/ContentLayout';
+import Pin from './components/Pin.js';
 function App() {
-  return <ContentLayout />;
+  return <Pin />;
+  // return <ContentLayout />;
 }
 
 export default App;
