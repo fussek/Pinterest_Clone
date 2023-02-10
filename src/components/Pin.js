@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../styles/pin_styles.css';
 
+function uploadImage(event, setPinImage) {
+  if (event.target.files && event.target.files[0]) {
+    if (/image\/*/.test(event.target.files[0].type)) {
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        setPinImage(reader.result);
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+}
+
 function Pin() {
+  const [pinImage, setPinImage] = useState();
   return (
     <div>
-      <input type='file' name='picture' id='picture' value='' />
+      <input
+        onChange={(event) => uploadImage(event, setPinImage)}
+        type='file'
+        name='picture'
+        id='picture'
+        value=''
+      />
 
       <div className='card'>
         <div className='pin_title'></div>
@@ -46,7 +67,7 @@ function Pin() {
         </div>
 
         <div className='pin_image'>
-          <img src='' alt='pin_image' />
+          <img src={pinImage} alt='pin_image' />
         </div>
       </div>
     </div>
