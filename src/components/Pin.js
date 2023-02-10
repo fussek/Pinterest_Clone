@@ -20,13 +20,7 @@ function Pin() {
   const [pinImage, setPinImage] = useState();
   return (
     <div>
-      <input
-        onChange={(event) => uploadImage(event, setPinImage)}
-        type='file'
-        name='picture'
-        id='picture'
-        value=''
-      />
+      <input onChange={(event) => uploadImage(event, setPinImage)} type='file' name='picture' id='picture' value='' />
 
       <div className='card'>
         <div className='pin_title'></div>
@@ -39,29 +33,17 @@ function Pin() {
           <div className='modal_foot'>
             <div className='destination'>
               <div className='pint_mock_icon_container'>
-                <img
-                  src='./images/upper-right-arrow.png'
-                  alt='destination'
-                  className='pint_mock_icon'
-                />
+                <img src='./images/upper-right-arrow.png' alt='destination' className='pint_mock_icon' />
               </div>
               <span>Eatery!</span>
             </div>
 
             <div className='pint_mock_icon_container'>
-              <img
-                src='./images/send.png'
-                alt='send'
-                className='pint_mock_icon'
-              />
+              <img src='./images/send.png' alt='send' className='pint_mock_icon' />
             </div>
 
             <div className='pint_mock_icon_container'>
-              <img
-                src='./images/ellipse.png'
-                alt='edit'
-                className='pint_mock_icon'
-              />
+              <img src='./images/ellipse.png' alt='edit' className='pint_mock_icon' />
             </div>
           </div>
         </div>
