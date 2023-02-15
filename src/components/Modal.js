@@ -1,10 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../styles/modal_styles.css';
 
-function uploadImg() {}
+function uploadImage(event, pinDetails, setPinDetails, setShowLabel, setShowModalPin) {
+  if (event.target.files && event.target.files[0]) {
+    if (/image\/*/.test(event.target.files[0].type)) {
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        setPinDetails({
+          ...pinDetails,
+          img_blob: reader.result,
+        });
+        setShowLabel(false);
+        setShowModalPin(true);
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+}
+function checkSize(event) {
+  const image = event.target;
+  image.classList.add('pin_max_width');
+  if (image.getBoundingClientRect().width < image.parentElement.getBoundingClientRect().width || image.getBoundingClientRect().height < image.parentElement.getBoundingClientRect().height) {
+    image.classList.remove('pin_max_width');
+    image.classList.add('pin_max_height');
+  }
+  image.style.opacity = 1;
+}
+
+function savePin(pinDetails) {
+  const users_data = {
+    ...pinDetails,
+    author: 'Patryk',
+    board: 'default',
+    title: document.querySelector('#pin_title').value,
+    description: document.querySelector('#pin_description').value,
+    destination: document.querySelector('#pin_destination').value,
+    pin_size: document.querySelector('#pin_size').value,
+  };
+  console.log(users_data);
+}
 
 function Modal() {
+  const [pinDetails, setPinDetails] = useState({
+    author: '',
+    board: '',
+    title: '',
+    destination: '',
+    description: '',
+    img_blob: '',
+    pin_size: '',
+  });
+  const [showLabel, setShowLabel] = useState(true);
+  const [showModalPin, setShowModalPin] = useState(false);
+
   return (
     <div className='add_pin_modal'>
       <div className='add_pin_container'>
@@ -15,7 +66,7 @@ function Modal() {
             </div>
           </div>
           <div className='section2'>
-            <label htmlFor='upload_img' id='upload_img_label'>
+            <label htmlFor='upload_img' id='upload_img_label' style={{ display: showLabel ? 'block' : 'none' }}>
               <div className='upload_img_container'>
                 <div id='dotted_border'>
                   <div className='pint_mock_icon_container'>
@@ -25,11 +76,11 @@ function Modal() {
                   <div>Recommendation: Use high-quality .jpg less than 20MB</div>
                 </div>
               </div>
-              <input onChange={uploadImg} type='file' name='upload_img' id='upload_img' value='' />
+              <input onChange={(event) => uploadImage(event, pinDetails, setPinDetails, setShowLabel, setShowModalPin)} type='file' name='upload_img' id='upload_img' value='' />
             </label>
-            <div className='modals_pin'>
+            <div className='modals_pin' style={{ display: showModalPin ? 'block' : 'none' }}>
               <div className='pin_image'>
-                <img src='' alt='pin_image' />
+                <img onLoad={checkSize} src={pinDetails.img_blob} alt='pin_image' />
               </div>
             </div>
           </div>
@@ -47,7 +98,9 @@ function Modal() {
                 <option value='medium'>Medium</option>
                 <option value='large'>Large</option>
               </select>
-              <div className='save_pin'>Save</div>
+              <div onClick={() => savePin(pinDetails)} className='save_pin'>
+                Save
+              </div>
             </div>
           </div>
           <div className='section2'>
