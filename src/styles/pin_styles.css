@@ -1,4 +1,4 @@
-.card {
+/* .card {
   width: 252px;
   height: 512px;
   border-radius: 16px;
@@ -6,7 +6,7 @@
   overflow: hidden;
 
   background-color: green;
-}
+} */
 
 .pin_title {
   width: 0;
@@ -72,6 +72,7 @@
 }
 
 .pin_modal .modal_head .save_card {
+  margin-right: 20px;
   width: 53px;
   height: 40px;
   border-radius: 22px;
@@ -84,7 +85,7 @@
   font-weight: 700;
 
   color: white;
-  background-color: red;
+  background-color: #e60023;
   cursor: pointer;
 }
 
@@ -99,12 +100,13 @@
   font-size: 16px;
   font-weight: 700;
 
-  background-color: white;
+  background-color: #f0f0f0;
   cursor: pointer;
 }
 
 .pin_modal .modal_foot .destination span {
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .pin_image {
@@ -117,5 +119,13 @@
 }
 
 .pin_image img {
+  opacity: 0;
+}
+
+.pin_max_width {
+  max-width: 100%;
+}
+
+.pin_max_height {
   max-height: 100%;
 }

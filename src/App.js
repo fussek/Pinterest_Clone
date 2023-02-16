@@ -1,16 +1,9 @@
-// import './styles.css';
 import './styles/normalize.css';
 
-import Modal from './components/Modal.js';
-
-// import Pin from './components/Pin.js';
-// import ContentLayout from './components/ContentLayout';
+import FinalBoard from './components/FinalBoard.js';
 
 function App() {
-  return <Modal />;
-
-  // return <Pin />;
-  // return <ContentLayout />;
+  return <FinalBoard />;
 }
 
 export default App;

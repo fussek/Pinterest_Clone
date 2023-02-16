@@ -30,7 +30,7 @@ function checkSize(event) {
   image.style.opacity = 1;
 }
 
-function savePin(pinDetails) {
+function savePin(pinDetails, addPin) {
   const users_data = {
     ...pinDetails,
     author: 'Patryk',
@@ -40,10 +40,10 @@ function savePin(pinDetails) {
     destination: document.querySelector('#pin_destination').value,
     pin_size: document.querySelector('#pin_size').value,
   };
-  console.log(users_data);
+  addPin(users_data);
 }
 
-function Modal() {
+function Modal(props) {
   const [pinDetails, setPinDetails] = useState({
     author: '',
     board: '',
@@ -98,7 +98,7 @@ function Modal() {
                 <option value='medium'>Medium</option>
                 <option value='large'>Large</option>
               </select>
-              <div onClick={() => savePin(pinDetails)} className='save_pin'>
+              <div onClick={() => savePin(pinDetails, props.addPin)} className='save_pin'>
                 Save
               </div>
             </div>
