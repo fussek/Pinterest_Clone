@@ -33,6 +33,9 @@ class FinalBoard extends React.Component {
           <div onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container add_pin'>
             <img src='./images/add.png' alt='add_pin' className='pint_mock_icon' />
           </div>
+          <div onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container add_pin'>
+            <img src='./images/ellipse.png' alt='menu' className='pint_mock_icon' />
+          </div>
         </div>
         <div className='pin_container'>{this.state.pins}</div>
         <div onClick={(event) => (event.target.className === 'add_pin_modal' ? this.setState({ show_modal: false }) : null)} className='add_pin_modal_container'>
