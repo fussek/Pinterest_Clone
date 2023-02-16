@@ -23,13 +23,14 @@ function Pin(props) {
         </div>
 
         <div className='modal_foot'>
-          <div className='destination'>
-            <div className='pint_mock_icon_container'>
-              <img src='./images/upper-right-arrow.png' alt='destination' className='pint_mock_icon' />
+          <a href={props.pinDetails.destination}>
+            <div className='destination'>
+              <div className='pint_mock_icon_container'>
+                <img src='./images/upper-right-arrow.png' alt='destination' className='pint_mock_icon' />
+              </div>
+              <span>{props.pinDetails.destination}</span>
             </div>
-            <span>{props.pinDetails.destination}</span>
-          </div>
-
+          </a>
           <div className='pint_mock_icon_container'>
             <img src='./images/send.png' alt='send' className='pint_mock_icon' />
           </div>
