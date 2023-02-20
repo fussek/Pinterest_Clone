@@ -1,0 +1,136 @@
+.open_pin_modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.open_pin_container {
+  padding: 35px;
+  width: 880px;
+  height: 674px;
+  border-radius: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+
+  display: flex;
+
+  background-color: white;
+}
+
+.side {
+  padding: 20px;
+  width: 50%;
+  height: 100%;
+}
+
+#left_side {
+  /* background-color: blue; */
+}
+
+#right_side {
+  /* background-color: orange; */
+}
+
+/* .pint_mock_icon_container {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.pint_mock_icon {
+  width: 50%;
+} */
+
+/* .section1 {
+  width: 100%;
+  height: 8%;
+
+  background-color: purple;
+} */
+
+.open_section2 {
+  padding: 0px 10px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* background-color: aquamarine; */
+}
+
+.open_modals_pin {
+  width: 400px;
+  height: 600px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  display: none;
+}
+
+.open_pin_image {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.open_pin_max_width {
+  max-width: 100%;
+}
+
+.open_pin_max_height {
+  max-height: 100%;
+}
+
+#right_side .open_section1 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#right_side .open_section2 .new_pin_input {
+  margin-bottom: 20px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-bottom: 2px solid #c6c6c6;
+  outline: none;
+
+  font-size: 16px;
+
+  background-color: transparent;
+}
+
+#right_side .open_section2 .open_pin_title {
+  margin-bottom: 60px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-bottom: 2px solid #c6c6c6;
+  outline: none;
+
+  font-size: 32px;
+
+  background-color: transparent;
+}

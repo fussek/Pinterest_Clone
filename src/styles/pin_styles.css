@@ -45,6 +45,7 @@
 .pin_modal .modal_foot {
   width: 100%;
   height: 15%;
+  margin-bottom: 2%;
   position: fixed;
   bottom: 0;
 
@@ -73,7 +74,8 @@
 
 .pin_modal .modal_head .save_card {
   margin-right: 20px;
-  width: 53px;
+  margin-top: 30px;
+  width: 40px;
   height: 40px;
   border-radius: 22px;
 
@@ -81,13 +83,32 @@
   justify-content: center;
   align-items: center;
 
-  font-size: 14px;
+  font-size: 28px;
   font-weight: 700;
 
   color: white;
   background-color: #e60023;
   cursor: pointer;
 }
+
+/* .pin_modal .modal_head .delete_card {
+  margin-right: 20px;
+  margin-top: 130px;
+  width: 20px;
+  height: 20px;
+  border-radius: 22px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  color: black;
+  background-color: white;
+  cursor: pointer;
+} */
 
 .pin_modal .modal_foot .destination {
   width: 132px;
@@ -97,7 +118,7 @@
   display: flex;
   align-items: center;
 
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 700;
 
   background-color: #f0f0f0;
@@ -120,6 +141,7 @@
 
 .pin_image img {
   opacity: 0;
+  transition-duration: 0.5s;
 }
 
 .pin_max_width {
