@@ -131,6 +131,7 @@ export default function RandomPin() {
     destination: 'www.google.com',
     pin_size: sizes[Math.floor(Math.random() * sizes.length)],
     img_blob: '/images/test pins/' + fileNames[Math.floor(Math.random() * fileNames.length)],
+    // img_blob:'https://picsum.photos/400/600',
   };
   return random_pin;
 }

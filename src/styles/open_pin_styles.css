@@ -65,7 +65,7 @@
   background-color: purple;
 } */
 
-.open_section2 {
+.open_section {
   padding: 0px 10px;
   width: 100%;
   height: 100%;
@@ -76,6 +76,22 @@
   align-items: center;
 
   /* background-color: aquamarine; */
+}
+
+#left_side .open_section3 .save_from_site {
+  width: 340px;
+  height: 48px;
+  border-radius: 22px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 700;
+
+  background-color: #efefef;
+  opacity: 0.3;
+  cursor: pointer;
 }
 
 .open_modals_pin {
@@ -104,12 +120,7 @@
   max-height: 100%;
 }
 
-#right_side .open_section1 {
-  display: flex;
-  justify-content: flex-end;
-}
-
-#right_side .open_section2 .new_pin_input {
+#right_side .open_section .new_pin_input {
   margin-bottom: 20px;
   width: 100%;
   height: 50px;
@@ -122,7 +133,7 @@
   background-color: transparent;
 }
 
-#right_side .open_section2 .open_pin_title {
+#right_side .open_section .open_pin_title {
   margin-bottom: 60px;
   width: 100%;
   height: 50px;

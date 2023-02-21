@@ -110,6 +110,10 @@
   cursor: pointer;
 } */
 
+a {
+  text-decoration: none;
+}
+
 .pin_modal .modal_foot .destination {
   width: 132px;
   height: 32px;

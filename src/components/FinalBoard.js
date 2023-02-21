@@ -43,7 +43,7 @@ class FinalBoard extends React.Component {
   };
 
   shufflePins() {
-    const newPin = RandomPin();
+    let newPin = RandomPin();
     this.addPin(newPin);
   }
 

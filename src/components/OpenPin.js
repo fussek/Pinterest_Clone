@@ -23,7 +23,7 @@ function OpenPin(props) {
     <div className='open_pin_modal'>
       <div className='open_pin_container'>
         <div className='side' id='left_side'>
-          <div className='open_section2'>
+          <div className='open_section'>
             <div className='open_modals_pin' style={{ display: 'block', opacity: 1 }}>
               <div className='open_pin_image'>
                 <img onLoad={checkSize} src={props.pinDetails.img_blob} alt='pin_image' style={{ opacity: 1 }} />
@@ -33,7 +33,7 @@ function OpenPin(props) {
         </div>
         <div className='side' id='right_side'>
           {/* <div className='section1'>♡</div> */}
-          <div className='open_section2'>
+          <div className='open_section'>
             {/* <div className='save_card'>♡</div> */}
             <div className='open_pin_title'>{props.pinDetails.title}</div>
             <div className='new_pin_input'>{props.pinDetails.description}</div>
