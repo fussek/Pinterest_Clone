@@ -126,9 +126,10 @@ export default function RandomPin() {
   var random_pin = {
     author: 'Patryk',
     board: 'default',
-    title: 'randomPin',
-    description: 'randomDescription',
-    destination: 'www.google.com',
+    title: 'The Journey',
+    description:
+      'Embarking on a journey can be both exciting and daunting. The anticipation of new experiences and adventures can fill one with a sense of wonder and joy, while the uncertainty of the unknown can also bring feelings of anxiety and trepidation. Whether its a physical journey to a far-off destination or a personal journey of self-discovery, every journey has the potential to bring growth, learning, and meaningful insights into our lives.',
+    destination: 'www.journey.com',
     pin_size: sizes[Math.floor(Math.random() * sizes.length)],
     img_blob: '/images/test pins/' + fileNames[Math.floor(Math.random() * fileNames.length)],
     // img_blob:'https://picsum.photos/400/600',
