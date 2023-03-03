@@ -26,7 +26,7 @@ function OpenPin(props) {
           <div className='open_section'>
             <div className='open_modals_pin' style={{ display: 'block', opacity: 1 }}>
               <div className='open_pin_image'>
-                <img onLoad={checkSize} src={props.pinDetails.img_blob} alt='pin_image' style={{ opacity: 1 }} />
+                <img onLoad={checkSize} src={props.pinDetails.img_url} alt='pin_image' style={{ opacity: 1 }} />
               </div>
             </div>
           </div>
