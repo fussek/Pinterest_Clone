@@ -23,7 +23,7 @@ function Todo() {
     await getDocs(collection(firestore, 'todos')).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       setTodos(newData);
-      console.log(todos, newData);
+      // console.log(todos, newData);
     });
   };
 
