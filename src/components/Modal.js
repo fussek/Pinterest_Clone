@@ -46,7 +46,7 @@ async function savePin(setIsLoading, e, pinDetails, addPin) {
     pin_size: document.querySelector('#pin_size').value,
   };
   //todo: figure out saving to Firebase
-  let doc = await savePinBackend(e, users_data);
+  await savePinBackend(e, users_data);
   addPin(users_data);
   setIsLoading(false);
 }
@@ -68,7 +68,7 @@ async function savePinBackend(e, users_data) {
         getDownloadURL(snapshot.ref)
           .then((url) => {
             updateDoc(docRef, { img_url: url })
-              .then((docRef) => {
+              .then(() => {
                 console.log('Update of pin sucessful!');
               })
               .catch((error) => {
