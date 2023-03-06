@@ -109,7 +109,6 @@ function Modal(props) {
   return (
     <div className='add_pin_modal'>
       <div className='add_pin_container'>
-        {isLoading ? <LoadingIcon /> : null}
         <div className='side' id='left_side'>
           <div className='section1'>
             <div className='pint_mock_icon_container'>
@@ -161,6 +160,7 @@ function Modal(props) {
           </div>
         </div>
       </div>
+      {isLoading ? <LoadingIcon /> : null}
     </div>
   );
 }
