@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../styles/open_pin_styles.css';
+import EnlargeImg from './EnlargeImg';
 
 function checkSize(event) {
   const image = event.target;
@@ -12,21 +13,19 @@ function checkSize(event) {
   image.style.opacity = 1;
 }
 
-// function enlargeImg(event) {
-//   const image = event.target;
-//   image.style.transform = 'scale(1.5)';
-//   image.style.transition = 'transform 0.25s ease';
-// }
-
 function OpenPin(props) {
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  const [showLargeImg, setShowLargeImg] = useState(false);
+
   return (
     <div className='open_pin_modal'>
+      {showLargeImg ? <EnlargeImg src={props.pinDetails.img_url} showLargeImg={showLargeImg} setShowLargeImg={setShowLargeImg} /> : null}
       <div className='open_pin_container'>
         <div className='side' id='left_side'>
           <div className='open_section'>
-            <div className='open_modals_pin' style={{ display: 'block', opacity: 1 }}>
-              <div className='open_pin_image'>
-                <img onLoad={checkSize} src={props.pinDetails.img_url} alt='pin_image' style={{ opacity: 1 }} />
+            <div className='open_modals_pin'>
+              <div className='open_pin_image' onClick={() => setShowLargeImg(!showLargeImg)}>
+                {showLargeImg ? null : <img onLoad={checkSize} src={props.pinDetails.img_url} alt='pin_image' style={{ cursor: showLargeImg ? null : 'pointer' }} />}
               </div>
             </div>
           </div>
