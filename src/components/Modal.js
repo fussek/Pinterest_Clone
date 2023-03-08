@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoadingIcon from './LoadingIcon';
 // import handleSubmit from '../firebase_setup/handleSubmit.js';
 import { collection, addDoc, getDoc, updateDoc } from 'firebase/firestore';
@@ -93,6 +93,7 @@ async function savePinBackend(e, users_data) {
 }
 
 function Modal(props) {
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   const [pinDetails, setPinDetails] = useState({
     author: '',
     board: '',

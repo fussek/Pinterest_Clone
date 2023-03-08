@@ -3,7 +3,7 @@ import '../styles/loading_icon.css';
 
 export default function LoadingIcon() {
   return (
-    <div class='lds-ring'>
+    <div className='lds-ring'>
       <div></div>
       <div></div>
       <div></div>
