@@ -5,7 +5,7 @@ import RandomPin from './RandomPin.js';
 import Pin from './Pin.js';
 import Modal from './Modal.js';
 import OpenPin from './OpenPin.js';
-import { fetchPinsBackend, deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
+import { deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
 
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase_setup/firebase.js';
@@ -145,6 +145,7 @@ class FinalBoard extends React.Component {
   render() {
     return (
       <div>
+        <div className='header'></div>
         <div className='navigation_bar'>
           <div onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container add_pin'>
             <img src='./images/add.png' alt='add_pin' className='pint_mock_icon' />
