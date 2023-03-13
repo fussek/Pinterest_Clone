@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import LoadingIcon from './LoadingIcon';
 // import handleSubmit from '../firebase_setup/handleSubmit.js';
-import { collection, addDoc, getDoc, updateDoc } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { firestore } from '../firebase_setup/firebase.js';
+// import { collection, addDoc, getDoc, updateDoc } from 'firebase/firestore';
+// import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+// import { firestore } from '../firebase_setup/firebase.js';
+import { savePinBackend } from '../firebase_setup/DatabaseOperations.js';
 import '../styles/modal_styles.css';
-let imageFile;
+let img_file;
 
 function uploadImage(event, pinDetails, setPinDetails, setShowLabel, setShowModalPin) {
   if (event.target.files && event.target.files[0]) {
@@ -20,7 +21,7 @@ function uploadImage(event, pinDetails, setPinDetails, setShowLabel, setShowModa
         setShowLabel(false);
         setShowModalPin(true);
       };
-      imageFile = event.target.files[0];
+      img_file = event.target.files[0];
     }
   }
 }
@@ -34,7 +35,7 @@ function checkSize(event) {
   image.style.opacity = 1;
 }
 
-async function savePin(setIsLoading, e, pinDetails, addPin) {
+async function savePin(setIsLoading, e, pinDetails, refreshPins) {
   setIsLoading(true);
   const users_data = {
     ...pinDetails,
@@ -45,51 +46,11 @@ async function savePin(setIsLoading, e, pinDetails, addPin) {
     destination: document.querySelector('#pin_destination').value,
     pin_size: document.querySelector('#pin_size').value,
   };
-  //todo: figure out saving to Firebase
-  await savePinBackend(e, users_data);
-  addPin(users_data);
+
+  await savePinBackend(e, users_data, img_file);
+
+  refreshPins(users_data);
   setIsLoading(false);
-}
-
-//todo: extract to external function, optimize, minimize API calls...
-async function savePinBackend(e, users_data) {
-  let docSnap;
-  e.preventDefault();
-  try {
-    const docRef = await addDoc(collection(firestore, 'pins'), {
-      ...users_data,
-      img_url: '',
-    });
-    const storage = getStorage();
-    const storageRef = ref(storage, docRef.id);
-    await uploadBytes(storageRef, imageFile)
-      .then((snapshot) => {
-        console.log('Uploaded image for pin: ' + docRef.id);
-        getDownloadURL(snapshot.ref)
-          .then((url) => {
-            updateDoc(docRef, { img_url: url })
-              .then(() => {
-                console.log('Update of pin sucessful!');
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    console.log('Document written with ID: ', docRef.id);
-    docSnap = await getDoc(docRef);
-
-    console.log(docSnap.data());
-    return docSnap.data();
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
 }
 
 function Modal(props) {
@@ -143,13 +104,12 @@ function Modal(props) {
         <div className='side' id='right_side'>
           <div className='section1'>
             <div className='select_size'>
-              <select defaultValue='Select' name='pin_size' id='pin_size'>
-                <option value=''>Select</option>
+              <select defaultValue='medium' name='pin_size' id='pin_size'>
                 <option value='small'>Small</option>
                 <option value='medium'>Medium</option>
                 <option value='large'>Large</option>
               </select>
-              <div onClick={(e) => savePin(setIsLoading, e, pinDetails, props.addPin)} className='save_pin'>
+              <div onClick={(e) => savePin(setIsLoading, e, pinDetails, props.refreshPins)} className='save_pin'>
                 Save
               </div>
             </div>

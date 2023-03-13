@@ -5,6 +5,8 @@ import RandomPin from './RandomPin.js';
 import Pin from './Pin.js';
 import Modal from './Modal.js';
 import OpenPin from './OpenPin.js';
+import { fetchPinsBackend, deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
+
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase_setup/firebase.js';
 
@@ -61,7 +63,7 @@ import { firestore } from '../firebase_setup/firebase.js';
 //       </div>
 //       <div className='pin_container'>{boardDetails.pins}</div>
 //       <div onClick={(event) => (event.target.className === 'add_pin_modal' ? setBoardDetails({ ...boardDetails, show_modal: false }) : null)} className='add_pin_modal_container'>
-//         {boardDetails.show_modal ? <Modal addPin={addPin} /> : null}
+//         {boardDetails.show_modal ? <Modal refreshPins={refreshPins} /> : null}
 //       </div>
 //       <div onClick={(event) => (event.target.className === 'open_pin_modal' ? setBoardDetails({ ...boardDetails, show_open_pin: false }) : null)} className='open_pin_modal_container'>
 //         {boardDetails.show_open_pin ? <OpenPin pinDetails={thePin} /> : null}
@@ -84,19 +86,16 @@ class FinalBoard extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchPost();
+    this.fetchPins();
   }
 
-  //todo: https://ordinarycoders.com/blog/article/reactjs-best-practices
-  // use componentDidMount() lifecycle method here
-
-  fetchPost = async () => {
-    this.setState({ is_loading: true });
+  fetchPins = async () => {
+    //todo: figure out extracting this to DatabaseOperations.js
     await getDocs(collection(firestore, 'pins')).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       let fetchedPins = [];
       newData.forEach((p) => {
-        fetchedPins.push(<Pin pinDetails={p} key={p.id} openPin={this.openPin} />);
+        fetchedPins.push(<Pin pinDetails={p} key={p.id} openPin={this.openPin} deletePin={this.deletePin} />);
       });
       this.setState((_state) => {
         return {
@@ -105,23 +104,11 @@ class FinalBoard extends React.Component {
           show_open_pin: false,
         };
       });
-      // console.log(this.state.pins, newData);
-      this.setState({ is_loading: false });
     });
   };
 
-  addPin = async (pinDetails) => {
-    //todo: idea --> change addPin to refreshPins, or fetchPins, as the plan is
-    await this.fetchPost();
-    // this.setState((_state) => {
-    //   const new_pins = [..._state.pins];
-    //   new_pins.push(<Pin pinDetails={pinDetails} key={_state.pins.length} openPin={this.openPin} />);
-    //   return {
-    //     pins: new_pins,
-    //     show_modal: false,
-    //     show_open_pin: false,
-    //   };
-    // });
+  refreshPins = async () => {
+    await this.fetchPins();
   };
 
   openPin = (pinDetails) => {
@@ -133,12 +120,26 @@ class FinalBoard extends React.Component {
         show_open_pin: true,
       };
     });
-    //todo: set the open pin modal to center of the screen (when scrolled down the page)
+  };
+
+  deletePin = async (pinDetails) => {
+    //todo: add loading mode and/or transition state (blur the pin, fade it out etc)
+    await deletePinBackend(pinDetails);
+    await this.fetchPins();
   };
 
   shufflePins() {
+    //todo: update this
     let newPin = RandomPin();
-    this.addPin(newPin);
+    this.setState((_state) => {
+      const new_pins = [..._state.pins];
+      new_pins.push(<Pin pinDetails={newPin} key={_state.pins.length} openPin={this.openPin} deletePin={this.deletePin} />);
+      return {
+        pins: new_pins,
+        show_modal: false,
+        show_open_pin: false,
+      };
+    });
   }
 
   render() {
@@ -157,7 +158,7 @@ class FinalBoard extends React.Component {
         </div>
         <div className='pin_container'>{this.state.pins}</div>
         <div onClick={(event) => (event.target.className === 'add_pin_modal' ? this.setState({ show_modal: false }) : null)} className='add_pin_modal_container'>
-          {this.state.show_modal ? <Modal addPin={this.addPin} /> : null}
+          {this.state.show_modal ? <Modal refreshPins={this.refreshPins} /> : null}
         </div>
         <div onClick={(event) => (event.target.className === 'open_pin_modal' ? this.setState({ show_open_pin: false }) : null)} className='open_pin_modal_container'>
           {this.state.show_open_pin ? <OpenPin pinDetails={this.pinDetails} /> : null}

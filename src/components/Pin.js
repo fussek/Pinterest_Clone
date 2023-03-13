@@ -12,6 +12,14 @@ function checkSize(event) {
   }
   image.style.opacity = 1;
 }
+//todo: DELETION
+function deletePin(pinDetails, deletePin) {
+  // console.log(pinDetails);
+  const pin_data = {
+    ...pinDetails,
+  };
+  deletePin(pin_data);
+}
 
 function openPin(pinDetails, openPin) {
   const pin_data = {
@@ -46,6 +54,10 @@ function Pin(props) {
 
           <div onClick={() => alert(props.pinDetails.title)} className='pint_mock_icon_container'>
             <img src='./images/ellipse.png' alt='edit' className='pint_mock_icon' />
+          </div>
+
+          <div onClick={() => deletePin(props.pinDetails, props.deletePin)} className='pint_mock_icon_container'>
+            <img src='./images/trash.png' alt='delete' className='pint_mock_icon' />
           </div>
         </div>
       </div>
