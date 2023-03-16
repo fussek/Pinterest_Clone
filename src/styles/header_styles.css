@@ -26,6 +26,7 @@
   color: #151515;
 }
 .pinterest {
+  z-index: 30;
   position: fixed;
   height: 8%;
   top: 0;
@@ -33,7 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: green;
+  background-color: white;
   padding: 0.938rem;
 }
 .left {
@@ -153,7 +154,6 @@
   align-items: center;
   flex-shrink: 0;
 
-  background-color: #f0f0f0;
   cursor: pointer;
 }
 .items-down:hover {
