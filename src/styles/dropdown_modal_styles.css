@@ -1,0 +1,32 @@
+/* bg-white p-4 w-52 shadow-lg absolute -left-14 top-24 */
+
+.dropdown {
+  display: flex;
+  left: -3.5rem;
+  top: 6rem;
+  position: absolute;
+  height: 60%;
+  padding: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  list-style-type: none;
+  border-radius: 1rem;
+}
+
+.options {
+  border-radius: 0.25rem;
+  list-style-type: none;
+}
+
+.option {
+  padding: 0.2rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  list-style-type: none;
+}
+
+.option:hover {
+  background-color: #bc0c1b77;
+}

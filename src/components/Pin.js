@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../styles/pin_styles.css';
+// import { Dropdown } from 'antd';
+import DropdownModal from './DropdownModal';
+
 const MySwal = withReactContent(Swal);
 
 function checkSize(event) {
@@ -14,6 +17,7 @@ function checkSize(event) {
   image.style.opacity = 1;
 }
 function deletePin(pinDetails, deletePin) {
+  //todo export sweetAlert popups to external file
   MySwal.fire({
     title: 'Are you sure?',
     text: 'Confirm deletion of the Pin',
@@ -41,6 +45,7 @@ function openPin(pinDetails, openPin) {
 }
 
 function Pin(props) {
+  const [showDropdown, setShowDropdown] = useState(false);
   return (
     <div className={`card card_${props.pinDetails.pin_size}`}>
       <div className='pin_title'>{props.pinDetails.title}</div>
@@ -63,7 +68,7 @@ function Pin(props) {
             <img src='./images/send.png' alt='send' className='pint_mock_icon' />
           </div>
 
-          <div onClick={() => alert(props.pinDetails.title)} className='pint_mock_icon_container'>
+          <div onClick={() => setShowDropdown(!showDropdown)} className='pint_mock_icon_container'>
             <img src='./images/ellipse.png' alt='edit' className='pint_mock_icon' />
           </div>
 
@@ -72,11 +77,7 @@ function Pin(props) {
           </div>
         </div>
       </div>
-
-      {/* <div onClick={(event) => (event.target.className === 'add_pin_modal' ? this.setState({ show_open_pin: false }) : null)} className='add_pin_modal_container'>
-        {this.state.show_open_pin ? <OpenPin pinDetails={this.pinDetails} /> : null}
-      </div> */}
-
+      {showDropdown ? <DropdownModal showDropdown={showDropdown} setShowDropdown={setShowDropdown} /> : null}
       <div className='pin_image'>
         <img onLoad={checkSize} src={props.pinDetails.img_url} alt='pin_image' />
       </div>
