@@ -1,21 +1,3 @@
-/* .header {
-  width: 80vw;
-  height: 8%;
-  position: fixed;
-  display: inline-flex;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px 10%;
-  justify-content: space-between;
-  background-color: green;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.938rem;
-  padding-top: 2vh;
-} */
-
 * {
   box-sizing: border-box;
   /* font-size: 1rem; */
@@ -136,6 +118,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .items:hover {
   background: #e5e5e5;

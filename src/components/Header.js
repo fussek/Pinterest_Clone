@@ -5,10 +5,10 @@ export default function Header(props) {
   return (
     <div className='pinterest'>
       <div class='left'>
-        <a href='http://localhost:3000/' class='logo'>
+        <a href='/' class='logo'>
           <img src='./images/Pinterest-logo.png' alt='logo' className='logo' />
         </a>
-        <a href='http://localhost:3000/' class='home'>
+        <a href='/' class='home'>
           Home
         </a>
       </div>
