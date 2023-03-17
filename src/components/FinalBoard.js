@@ -143,10 +143,20 @@ class FinalBoard extends React.Component {
     });
   }
 
+  setShowModal = (showState) => {
+    this.setState((_state) => {
+      return {
+        ..._state,
+        show_modal: showState,
+        show_open_pin: false,
+      };
+    });
+  };
+
   render() {
     return (
       <div>
-        <Header />
+        <Header setShowModal={this.setShowModal} />
         <div className='navigation_bar'>
           <div onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container add_pin'>
             <img src='./images/add.png' alt='add_pin' className='pint_mock_icon' />
