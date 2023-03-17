@@ -27,18 +27,18 @@ export default function Header() {
         <input type='search' name='' placeholder='Search' id='' />
       </div>
       <div class='right'>
-        <a href='http://localhost:3000/' class='items'>
+        <a href='/' class='items'>
           <img src='./images/add.png' alt='down' style={{ width: '50%' }} />
         </a>
-        <a href='http://localhost:3000/' class='items'>
+        <a href='/' class='items'>
           <img src='./images/setting-lines.png' alt='down' style={{ width: '50%' }} />
         </a>
-        <a href='http://localhost:3000/' class='avatar'>
+        <a href='/' class='avatar'>
           <div class='img'>
             <img src='https://avatars.githubusercontent.com/u/45184925?v=4' alt='' />
           </div>
         </a>
-        <a href='http://localhost:3000/' class='items-down'>
+        <a href='/' class='items-down'>
           <img src='./images/down-arrow.png' alt='down' className='logo' />
         </a>
       </div>
