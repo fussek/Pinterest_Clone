@@ -1,12 +1,12 @@
 import React from 'react';
 import '../styles/dropdown_modal_styles.css';
 
-const Menu = ['Delete', 'Open', 'Save as favorite', 'Download Image'];
+const Menu = ['Modify', 'Archive', 'Delete', 'Download', 'Properties'];
 
 function DropdownModal(props) {
   return (
-    <div className='dropdown'>
-      {props.showDropdown && (
+    <div className='dropdown_modal'>
+      <div className='dropdown_container'>
         <ul className='options'>
           {Menu.map((menu) => (
             <li className='option' key={menu}>
@@ -14,7 +14,7 @@ function DropdownModal(props) {
             </li>
           ))}
         </ul>
-      )}
+      </div>
     </div>
   );
 }
