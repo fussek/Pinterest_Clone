@@ -19,13 +19,23 @@ function checkSize(event) {
 function deletePin(pinDetails, deletePin) {
   //todo export sweetAlert popups to external file
   MySwal.fire({
-    title: 'Are you sure?',
-    text: 'Confirm deletion of the Pin',
-    icon: 'warning',
+    title: 'Delete this pin?',
+    // text: 'Confirm deletion of the Pin',
+    icon: 'error',
+
+    width: 300,
+    // height: 180,
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#e60023',
-    confirmButtonText: 'Yes, delete it!',
+    confirmButtonColor: '#2ca34c',
+    cancelButtonColor: '#e6002390',
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'No',
+
+    showClass: {
+      popup: 'swal2-show',
+      backdrop: 'swal2-backdrop-show',
+      icon: 'swal2-icon-show',
+    },
   }).then((result) => {
     if (result.isConfirmed) {
       const pin_data = {
@@ -77,10 +87,10 @@ function Pin(props) {
           </div>
         </div>
       </div>
-      {showDropdown ? <DropdownModal showDropdown={showDropdown} setShowDropdown={setShowDropdown} /> : null}
       <div className='pin_image'>
         <img onLoad={checkSize} src={props.pinDetails.img_url} alt='pin_image' />
       </div>
+      {showDropdown ? <DropdownModal showDropdown={showDropdown} setShowDropdown={setShowDropdown} /> : null}
     </div>
   );
 }

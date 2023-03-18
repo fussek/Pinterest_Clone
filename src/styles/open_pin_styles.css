@@ -6,11 +6,19 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 99999;
-
+  z-index: 500;
   background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.2s;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .open_pin_container {
   padding: 35px;
   width: 880px;
@@ -33,19 +41,22 @@
   height: 100%;
 }
 
-#left_side {
+#left_side_open {
   /* background-color: blue; */
 }
 
-#right_side {
+#right_side_open {
   /* background-color: orange; */
+  display: grid;
+  justify-items: end;
 }
 
-/* .pint_mock_icon_container {
+.options_icon_container {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 
+  transition-duration: 0.3s;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,9 +66,14 @@
   cursor: pointer;
 }
 
-.pint_mock_icon {
+.options_icon {
   width: 50%;
-} */
+}
+
+.options_icon_container:hover {
+  transform: scale(1.1);
+  background-color: #767676;
+}
 
 /* .section1 {
   width: 100%;
@@ -79,7 +95,7 @@
   /* background-color: aquamarine; */
 }
 
-#left_side .open_section3 .save_from_site {
+#left_side_open .open_section3 .save_from_site {
   width: 340px;
   height: 48px;
   border-radius: 22px;
@@ -111,21 +127,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* cursor: pointer; */
-
-  opacity: 1;
 }
 
 .open_pin_max_width {
+  /* gets changed to =1 after checking the size */
+  opacity: 0;
   max-width: 100%;
 }
 
 .open_pin_max_height {
+  opacity: 0;
   max-height: 100%;
 }
 
-#right_side .open_section .new_pin_input {
-  margin-bottom: 200px;
+#right_side_open .open_section .new_pin_input {
   width: 100%;
   height: 400px;
   border: none;
@@ -137,7 +152,7 @@
   background-color: transparent;
 }
 
-#right_side .open_section .open_pin_title {
+#right_side_open .open_section .open_pin_title {
   margin-bottom: 60px;
   width: 100%;
   height: 50px;
