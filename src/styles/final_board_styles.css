@@ -20,6 +20,18 @@
   background-color: #767676;
 }
 
+[tooltip]::before {
+  position: absolute;
+  margin-top: 15vh;
+  content: attr(tooltip);
+  opacity: 0;
+}
+
+[tooltip]:hover::before {
+  transition-delay: 0.5s;
+  opacity: 1;
+}
+
 .pin_container {
   margin: 0;
   padding: 0;

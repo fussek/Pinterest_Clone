@@ -1,38 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/header_styles.css';
+import DropdownModal from './DropdownModal';
 
-export default function Header(props) {
+function filterResults(event, props) {
+  let filteredPins = props.pinsToFilter.filter((pin) => {
+    return pin.props.pinDetails.title.indexOf(event.target.value) > -1;
+  });
+  props.filterPins(filteredPins);
+}
+
+function Header(props) {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   return (
     <div className='pinterest'>
-      <div class='left'>
-        <a href='/' class='logo'>
+      <div className='left'>
+        <a href='/' className='logo'>
           <img src='./images/Pinterest-logo.png' alt='logo' className='logo' />
         </a>
-        <a href='/' class='home'>
+        <a href='/' className='home'>
           Home
         </a>
       </div>
-      <div class='search'>
-        <i class='fas fa-search'></i>
-        <input type='search' name='' placeholder='Search' id='' />
+      <div className='search'>
+        <img src='./images/loupe.png' alt='loupe' style={{ maxHeight: '50%', paddingLeft: '15px', paddingRight: '10px', opacity: '0.5' }} />
+        <input onChange={(event) => filterResults(event, props)} type='search' name='' placeholder='Search' id='' />
       </div>
-      <div class='right'>
-        <div onClick={() => props.setShowModal(true)} class='items'>
+      <div className='right'>
+        <div onClick={() => props.setShowModal(true)} className='items'>
           <img src='./images/add.png' alt='down' style={{ width: '50%' }} />
         </div>
-        <a href='/' class='items'>
+        <div onClick={() => setShowDropdown(!showDropdown)} className='items'>
           <img src='./images/setting-lines.png' alt='down' style={{ width: '50%' }} />
-        </a>
-        <a href='/' class='avatar'>
-          <div class='img'>
+        </div>
+        <a href='/' className='avatar'>
+          <div className='img'>
             <img src='https://avatars.githubusercontent.com/u/45184925?v=4' alt='' />
           </div>
         </a>
-        <a href='/' class='items-down'>
+        <div onClick={() => setShowDropdown(!showDropdown)} className='items-down'>
           <img src='./images/down-arrow.png' alt='down' className='logo' />
-        </a>
+        </div>
       </div>
-      {/* </div> */}
+      {showDropdown ? <DropdownModal showDropdown={showDropdown} setShowDropdown={setShowDropdown} /> : null}
     </div>
   );
 }
+
+export default Header;
