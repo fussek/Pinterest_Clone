@@ -6,6 +6,8 @@ import Pin from './Pin.js';
 import Modal from './Modal.js';
 import OpenPin from './OpenPin.js';
 import Header from './Header';
+import Guidelines from './Guidelines.js';
+
 import { deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
 
 import { collection, getDocs } from 'firebase/firestore';
@@ -84,6 +86,7 @@ class FinalBoard extends React.Component {
       pinsToShow: [],
       show_modal: false,
       show_open_pin: false,
+      show_guidelines: false,
     };
   }
 
@@ -101,10 +104,9 @@ class FinalBoard extends React.Component {
       });
       this.setState((_state) => {
         return {
+          ..._state,
           pinsFromDb: fetchedPins,
           pinsToShow: fetchedPins,
-          show_modal: false,
-          show_open_pin: false,
         };
       });
     });
@@ -119,7 +121,6 @@ class FinalBoard extends React.Component {
     this.setState((_state) => {
       return {
         ..._state,
-        show_modal: false,
         show_open_pin: true,
       };
     });
@@ -132,7 +133,6 @@ class FinalBoard extends React.Component {
   };
 
   generateRandomPin = async (event) => {
-    //todo: update this
     await RandomPin(event);
     await this.refreshPins();
   };
@@ -142,7 +142,6 @@ class FinalBoard extends React.Component {
       return {
         ..._state,
         show_modal: showState,
-        show_open_pin: false,
       };
     });
   };
@@ -152,8 +151,6 @@ class FinalBoard extends React.Component {
       return {
         ..._state,
         pinsToShow: filteredPins,
-        show_modal: false,
-        show_open_pin: false,
       };
     });
   };
@@ -163,14 +160,17 @@ class FinalBoard extends React.Component {
       <div>
         <Header pinsToFilter={this.state.pinsFromDb} filterPins={this.filterPins} setShowModal={this.setShowModal} />
         <div className='navigation_bar'>
-          <div onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container add_pin'>
+          <div tooltip='Add new Pin' onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container' id='add_pin'>
             <img src='./images/add.png' alt='add_pin' className='pint_mock_icon' />
           </div>
-          <div className='pint_mock_icon_container add_pin'>
-            <img src='./images/ellipse.png' alt='menu' className='pint_mock_icon' />
-          </div>
           <div tooltip='Generate random Pin' onClick={(event) => this.generateRandomPin(event)} className='pint_mock_icon_container add_pin'>
-            <img src='./images/shuffle.png' alt='shuffle' className='pint_mock_icon' />
+            <img src='./images/shuffle.png' alt='random' className='pint_mock_icon' />
+          </div>
+          <div tooltip='Refresh Pins' onClick={() => this.refreshPins()} className='pint_mock_icon_container add_pin'>
+            <img src='./images/refresh.png' alt='refresh' className='pint_mock_icon' />
+          </div>
+          <div tooltip='Show guidelines' onClick={() => alert('Guidelines are in the making :)')} className='pint_mock_icon_container add_pin'>
+            <img src='./images/help.png' alt='help' className='pint_mock_icon' />
           </div>
         </div>
         <div className='pin_container'>{this.state.pinsToShow}</div>
@@ -179,6 +179,9 @@ class FinalBoard extends React.Component {
         </div>
         <div onClick={(event) => (event.target.className === 'open_pin_modal' ? this.setState({ show_open_pin: false }) : null)} className='open_pin_modal_container'>
           {this.state.show_open_pin ? <OpenPin pinDetails={this.pinDetails} /> : null}
+        </div>
+        <div onClick={(event) => (event.target.className === 'guidelines_modal' ? this.setState({ show_guidelines: false }) : null)} className='guidelines_modal_container'>
+          {this.state.show_guidelines ? <Guidelines /> : null}
         </div>
       </div>
     );

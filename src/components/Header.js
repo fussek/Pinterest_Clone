@@ -16,7 +16,7 @@ function Header(props) {
     <div className='pinterest'>
       <div className='left'>
         <a href='/' className='logo'>
-          <img src='./images/Pinterest-logo.png' alt='logo' className='logo' />
+          <img src='./images/fussek-logo-pinterest.png' alt='logo' className='logo' />
         </a>
         <a href='/' className='home'>
           Home
