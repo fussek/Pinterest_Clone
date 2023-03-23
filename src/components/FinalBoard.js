@@ -7,6 +7,7 @@ import Modal from './Modal.js';
 import OpenPin from './OpenPin.js';
 import Header from './Header';
 import Guidelines from './Guidelines.js';
+import autoAnimate from '@formkit/auto-animate';
 
 import { deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
 
@@ -80,6 +81,7 @@ import { firestore } from '../firebase_setup/firebase.js';
 class FinalBoard extends React.Component {
   constructor(props) {
     super(props);
+    this.animate = React.createRef();
 
     this.state = {
       pinsFromDb: [],
@@ -92,6 +94,7 @@ class FinalBoard extends React.Component {
 
   componentDidMount() {
     this.fetchPins();
+    this.animate.current && autoAnimate(this.animate.current);
   }
 
   fetchPins = async () => {
@@ -173,7 +176,9 @@ class FinalBoard extends React.Component {
             <img src='./images/help.png' alt='help' className='pint_mock_icon' />
           </div>
         </div>
-        <div className='pin_container'>{this.state.pinsToShow}</div>
+        <div className='pin_container' ref={this.animate}>
+          {this.state.pinsToShow}
+        </div>
         <div onClick={(event) => (event.target.className === 'add_pin_modal' ? this.setState({ show_modal: false }) : null)} className='add_pin_modal_container'>
           {this.state.show_modal ? <Modal refreshPins={this.refreshPins} /> : null}
         </div>
