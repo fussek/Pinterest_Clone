@@ -1,83 +1,18 @@
 import React from 'react';
-
-import '../styles/final_board_styles.css';
 import RandomPin from './RandomPin.js';
 import Pin from './Pin.js';
 import Modal from './Modal.js';
 import OpenPin from './OpenPin.js';
 import Header from './Header';
 import Guidelines from './Guidelines.js';
-import autoAnimate from '@formkit/auto-animate';
 import LoadingIcon from './LoadingIcon';
-
 import { deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
-
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase_setup/firebase.js';
 
-// function FinalBoard() {
-//   var thePin = {};
-//   const [boardDetails, setBoardDetails] = useState({
-//     pins: [],
-//     show_modal: false,
-//     show_open_pin: false,
-//   });
+import '../styles/final_board_styles.css';
 
-//   const openPin = (pinDetails) => {
-//     thePin = { ...pinDetails };
-//     setBoardDetails((boardDetails) => {
-//       return {
-//         ...boardDetails,
-//         show_modal: false,
-//         show_open_pin: true,
-//       };
-//     });
-//     //todo: set the open pin modal to center of the screen (when scrolled down the page)
-//   };
-
-//   const shufflePins = () => {
-//     let newPin = RandomPin();
-//     addPin(newPin);
-//   };
-
-//   const addPin = (pinDetails) => {
-//     setBoardDetails((boardDetails) => {
-//       const new_pins = [...boardDetails.pins];
-//       new_pins.push(<Pin pinDetails={pinDetails} key={boardDetails.pins.length} openPin={openPin} />);
-//       // openPin={openPin}
-//       return {
-//         pins: new_pins,
-//         show_modal: false,
-//         show_open_pin: false,
-//       };
-//     });
-//   };
-
-//   return (
-//     <div>
-//       <div className='navigation_bar'>
-//         <div onClick={() => setBoardDetails({ ...boardDetails, show_modal: true })} className='pint_mock_icon_container add_pin'>
-//           <img src='./images/add.png' alt='add_pin' className='pint_mock_icon' />
-//         </div>
-//         <div className='pint_mock_icon_container add_pin'>
-//           <img src='./images/ellipse.png' alt='menu' className='pint_mock_icon' />
-//         </div>
-//         <div onClick={() => shufflePins()} className='pint_mock_icon_container add_pin'>
-//           <img src='./images/shuffle.png' alt='shuffle' className='pint_mock_icon' />
-//         </div>
-//       </div>
-//       <div className='pin_container'>{boardDetails.pins}</div>
-//       <div onClick={(event) => (event.target.className === 'add_pin_modal' ? setBoardDetails({ ...boardDetails, show_modal: false }) : null)} className='add_pin_modal_container'>
-//         {boardDetails.show_modal ? <Modal refreshPins={refreshPins} /> : null}
-//       </div>
-//       <div onClick={(event) => (event.target.className === 'open_pin_modal' ? setBoardDetails({ ...boardDetails, show_open_pin: false }) : null)} className='open_pin_modal_container'>
-//         {boardDetails.show_open_pin ? <OpenPin pinDetails={thePin} /> : null}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default FinalBoard;
+import autoAnimate from '@formkit/auto-animate';
 
 class FinalBoard extends React.Component {
   constructor(props) {
@@ -98,7 +33,7 @@ class FinalBoard extends React.Component {
     this.fetchPins();
     this.animate.current && autoAnimate(this.animate.current);
   }
-
+  //todo: extract setting state method, for the love of god
   fetchPins = async () => {
     //todo: figure out extracting this to DatabaseOperations.js
     await getDocs(collection(firestore, 'pins')).then((querySnapshot) => {
@@ -127,7 +62,6 @@ class FinalBoard extends React.Component {
     await this.fetchPins();
   };
   //todo: extract setting state method, for the love of god
-
   openPin = (pinDetails) => {
     this.pinDetails = pinDetails;
     this.setState((_state) => {
@@ -138,14 +72,18 @@ class FinalBoard extends React.Component {
     });
   };
   //todo: extract setting state method, for the love of god
-
   deletePin = async (pinDetails) => {
     //todo: add loading mode and/or transition state (blur the pin, fade it out etc)
     await deletePinBackend(pinDetails);
     await this.fetchPins();
+    this.setState((_state) => {
+      return {
+        ..._state,
+        show_open_pin: false,
+      };
+    });
   };
   //todo: extract setting state method, for the love of god
-
   generateRandomPin = async (event) => {
     this.setState((_state) => {
       return {
@@ -163,7 +101,6 @@ class FinalBoard extends React.Component {
     });
   };
   //todo: extract setting state method, for the love of god
-
   setShowModal = (showState) => {
     this.setState((_state) => {
       return {
@@ -173,7 +110,6 @@ class FinalBoard extends React.Component {
     });
   };
   //todo: extract setting state method, for the love of god
-
   filterPins = (filteredPins) => {
     this.setState((_state) => {
       return {
@@ -182,17 +118,6 @@ class FinalBoard extends React.Component {
       };
     });
   };
-
-  // setStates = (statesArray) => {
-  //   statesArray.forEach((key) => {
-  //     this.setState((_state) => {
-  //       return {
-  //         ..._state,
-  //         key: key[0],
-  //       };
-  //     });
-  //   });
-  // };
 
   render() {
     return (
@@ -219,7 +144,7 @@ class FinalBoard extends React.Component {
           {this.state.show_modal ? <Modal refreshPins={this.refreshPins} /> : null}
         </div>
         <div onClick={(event) => (event.target.className === 'open_pin_modal' ? this.setState({ show_open_pin: false }) : null)} className='open_pin_modal_container'>
-          {this.state.show_open_pin ? <OpenPin pinDetails={this.pinDetails} /> : null}
+          {this.state.show_open_pin ? <OpenPin pinDetails={this.pinDetails} deletePin={this.deletePin} /> : null}
         </div>
         <div onClick={(event) => (event.target.className === 'guidelines_modal' ? this.setState({ show_guidelines: false }) : null)} className='guidelines_modal_container'>
           {this.state.show_guidelines ? <Guidelines /> : null}

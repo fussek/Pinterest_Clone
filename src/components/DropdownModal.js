@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/dropdown_modal_styles.css';
 
 const Menu = ['Modify', 'Archive', 'Delete', 'Download', 'Properties'];
-
+//at the moment, deprecated
 function DropdownModal(props) {
   return (
     <div className='dropdown_modal'>

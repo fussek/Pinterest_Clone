@@ -1,8 +1,38 @@
 import React, { useState } from 'react';
-
-import '../styles/open_pin_styles.css';
 import EnlargeImg from './EnlargeImg';
-import DropdownModal from './DropdownModal';
+import '../styles/open_pin_styles.css';
+
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { MoreOutlined } from '@ant-design/icons';
+import { Dropdown, Button, Space, Tooltip } from 'antd';
+
+function deletePin(pinDetails, deletePin) {
+  //todo export sweetAlert popups to external file
+  const MySwal = withReactContent(Swal);
+  MySwal.fire({
+    title: 'Delete this pin?',
+    icon: 'error',
+    width: 300,
+    showCancelButton: true,
+    confirmButtonColor: '#2ca34c',
+    cancelButtonColor: '#e6002390',
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'No',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const pin_data = {
+        ...pinDetails,
+      };
+      deletePin(pin_data);
+      MySwal.fire({
+        title: 'Deleted!',
+        icon: 'success',
+        width: 300,
+      });
+    }
+  });
+}
 
 function checkSize(event) {
   const image = event.target;
@@ -17,7 +47,23 @@ function checkSize(event) {
 function OpenPin(props) {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   const [showLargeImg, setShowLargeImg] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const items = [
+    {
+      label: <span>Edit</span>,
+      key: '0',
+    },
+    {
+      label: <span>Properties</span>,
+      key: '1',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: <span onClick={() => deletePin(props.pinDetails, props.deletePin)}>Delete</span>,
+      key: '3',
+    },
+  ];
 
   return (
     <div className='open_pin_modal'>
@@ -34,8 +80,16 @@ function OpenPin(props) {
         </div>
 
         <div className='side' id='right_side_open'>
-          <div className='options_icon_container' onClick={() => setShowDropdown(!showDropdown)}>
-            <img src='./images/ellipse.png' alt='edit' className='options_icon' />
+          <div className='options_icon_container'>
+            <Dropdown menu={{ items }} trigger={['click']}>
+              <Space direction='vertical'>
+                <Space wrap>
+                  <Tooltip title='More'>
+                    <Button type='default' shape='circle' icon={<MoreOutlined />} />
+                  </Tooltip>
+                </Space>
+              </Space>
+            </Dropdown>
           </div>
           {/* <div className='section1'>♡</div> */}
           <div className='open_section'>
@@ -46,7 +100,6 @@ function OpenPin(props) {
           </div>
         </div>
       </div>
-      {showDropdown ? <DropdownModal showDropdown={showDropdown} setShowDropdown={setShowDropdown} /> : null}
     </div>
   );
 }

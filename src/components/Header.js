@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/header_styles.css';
-import DropdownModal from './DropdownModal';
+import { MoreOutlined } from '@ant-design/icons';
+import { Dropdown, Button, Space, Tooltip } from 'antd';
 
 function filterResults(event, props) {
   let filteredPins = props.pinsToFilter.filter((pin) => {
@@ -11,7 +12,20 @@ function filterResults(event, props) {
 
 function Header(props) {
   const [showDropdown, setShowDropdown] = useState(false);
-
+  const items = [
+    {
+      label: <span>Profile</span>,
+      key: '0',
+    },
+    {
+      label: <span>Settings</span>,
+      key: '1',
+    },
+    {
+      label: <span>Contact</span>,
+      key: '2',
+    },
+  ];
   return (
     <div className='pinterest'>
       <div className='left'>
@@ -27,11 +41,16 @@ function Header(props) {
         <input onChange={(event) => filterResults(event, props)} type='search' name='' placeholder='Search' id='' />
       </div>
       <div className='right'>
-        <div onClick={() => props.setShowModal(true)} className='items'>
-          <img src='./images/add.png' alt='down' style={{ width: '50%' }} />
-        </div>
-        <div onClick={() => setShowDropdown(!showDropdown)} className='items'>
-          <img src='./images/setting-lines.png' alt='down' style={{ width: '50%' }} />
+        <div className='items'>
+          <Dropdown menu={{ items }} trigger={['click']}>
+            <Space direction='vertical'>
+              <Space wrap>
+                <Tooltip title='More'>
+                  <Button type='default' shape='circle' icon={<MoreOutlined />} />
+                </Tooltip>
+              </Space>
+            </Space>
+          </Dropdown>
         </div>
         <a href='/' className='avatar'>
           <div className='img'>
@@ -42,7 +61,6 @@ function Header(props) {
           <img src='./images/down-arrow.png' alt='down' className='logo' />
         </div>
       </div>
-      {showDropdown ? <DropdownModal showDropdown={showDropdown} setShowDropdown={setShowDropdown} /> : null}
     </div>
   );
 }
