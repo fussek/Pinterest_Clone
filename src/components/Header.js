@@ -5,7 +5,7 @@ import { Dropdown, Button, Space, Tooltip } from 'antd';
 
 function filterResults(event, props) {
   let filteredPins = props.pinsToFilter.filter((pin) => {
-    return pin.props.pinDetails.title.indexOf(event.target.value) > -1;
+    return pin.props.pinDetails.title.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1;
   });
   props.filterPins(filteredPins);
 }
@@ -38,7 +38,7 @@ function Header(props) {
       </div>
       <div className='search'>
         <img src='./images/loupe.png' alt='loupe' style={{ maxHeight: '50%', paddingLeft: '15px', paddingRight: '10px', opacity: '0.5' }} />
-        <input onChange={(event) => filterResults(event, props)} type='search' name='' placeholder='Search' id='' />
+        <input onChange={(event) => filterResults(event, props)} type='search' name='' placeholder='Search by keywords, f.ex. Nature or NYC' id='' />
       </div>
       <div className='right'>
         <div className='items'>
