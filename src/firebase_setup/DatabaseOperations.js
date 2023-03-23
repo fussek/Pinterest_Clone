@@ -2,6 +2,7 @@ import { collection, doc, addDoc, getDoc, updateDoc, getDocs, deleteDoc } from '
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 
 import { firestore } from '../firebase_setup/firebase.js';
+import imageCompression from 'browser-image-compression';
 
 export async function savePinBackend(e, users_data, imageFile) {
   let doc_snap;
@@ -12,8 +13,10 @@ export async function savePinBackend(e, users_data, imageFile) {
       img_url: '',
     });
     const storage = getStorage();
+    //todo: assigning docRef.id isn't necassary, i can upload the img_file in another async call and only upload the pin once i have image URL
     const storageRef = ref(storage, docRef.id);
-    await uploadBytes(storageRef, imageFile)
+    let compressedImg = await compressImage(imageFile);
+    await uploadBytes(storageRef, compressedImg)
       .then((snapshot) => {
         console.log('Uploaded image for pin: ' + docRef.id);
         getDownloadURL(snapshot.ref)
@@ -38,6 +41,19 @@ export async function savePinBackend(e, users_data, imageFile) {
   } catch (e) {
     console.error('Error adding document: ', e);
   }
+}
+
+async function compressImage(imageFile) {
+  let compressedFile;
+  const options = {
+    maxSizeMB: 1,
+  };
+  try {
+    compressedFile = await imageCompression(imageFile, options);
+  } catch (error) {
+    console.log(error);
+  }
+  return compressedFile;
 }
 
 export async function deletePinBackend(pin_details) {

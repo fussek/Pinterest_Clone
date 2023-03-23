@@ -8,6 +8,7 @@ import OpenPin from './OpenPin.js';
 import Header from './Header';
 import Guidelines from './Guidelines.js';
 import autoAnimate from '@formkit/auto-animate';
+import LoadingIcon from './LoadingIcon';
 
 import { deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
 
@@ -89,6 +90,7 @@ class FinalBoard extends React.Component {
       show_modal: false,
       show_open_pin: false,
       show_guidelines: false,
+      show_loading: false,
     };
   }
 
@@ -114,10 +116,17 @@ class FinalBoard extends React.Component {
       });
     });
   };
-
+  //todo: extract setting state method, for the love of god
   refreshPins = async () => {
+    this.setState((_state) => {
+      return {
+        ..._state,
+        show_modal: false,
+      };
+    });
     await this.fetchPins();
   };
+  //todo: extract setting state method, for the love of god
 
   openPin = (pinDetails) => {
     this.pinDetails = pinDetails;
@@ -128,17 +137,32 @@ class FinalBoard extends React.Component {
       };
     });
   };
+  //todo: extract setting state method, for the love of god
 
   deletePin = async (pinDetails) => {
     //todo: add loading mode and/or transition state (blur the pin, fade it out etc)
     await deletePinBackend(pinDetails);
     await this.fetchPins();
   };
+  //todo: extract setting state method, for the love of god
 
   generateRandomPin = async (event) => {
+    this.setState((_state) => {
+      return {
+        ..._state,
+        show_loading: true,
+      };
+    });
     await RandomPin(event);
     await this.refreshPins();
+    this.setState((_state) => {
+      return {
+        ..._state,
+        show_loading: false,
+      };
+    });
   };
+  //todo: extract setting state method, for the love of god
 
   setShowModal = (showState) => {
     this.setState((_state) => {
@@ -148,6 +172,7 @@ class FinalBoard extends React.Component {
       };
     });
   };
+  //todo: extract setting state method, for the love of god
 
   filterPins = (filteredPins) => {
     this.setState((_state) => {
@@ -157,6 +182,17 @@ class FinalBoard extends React.Component {
       };
     });
   };
+
+  // setStates = (statesArray) => {
+  //   statesArray.forEach((key) => {
+  //     this.setState((_state) => {
+  //       return {
+  //         ..._state,
+  //         key: key[0],
+  //       };
+  //     });
+  //   });
+  // };
 
   render() {
     return (
@@ -188,6 +224,7 @@ class FinalBoard extends React.Component {
         <div onClick={(event) => (event.target.className === 'guidelines_modal' ? this.setState({ show_guidelines: false }) : null)} className='guidelines_modal_container'>
           {this.state.show_guidelines ? <Guidelines /> : null}
         </div>
+        {this.state.show_loading ? <LoadingIcon /> : null}
       </div>
     );
   }
