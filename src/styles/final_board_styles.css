@@ -3,7 +3,16 @@
   position: fixed;
   right: 5%;
   top: 8%;
-  /* background-color: aquamarine; */
+  background-color: aquamarine;
+}
+
+@media (max-width: 1024px) {
+  .navigation_bar {
+    position: absolute;
+    clip: rect(0px, 200, 200px, 0px);
+    padding-right: 5%;
+    padding-top: 30%;
+  }
 }
 
 .navigation_bar .pint_mock_icon_container {

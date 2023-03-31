@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/header_styles.css';
 import { MoreOutlined } from '@ant-design/icons';
 import { Dropdown, Button, Space, Tooltip } from 'antd';
@@ -11,7 +11,6 @@ function filterResults(event, props) {
 }
 
 function Header(props) {
-  const [showDropdown, setShowDropdown] = useState(false);
   const items = [
     {
       label: <span>Profile</span>,
@@ -31,9 +30,6 @@ function Header(props) {
       <div className='left'>
         <a href='/' className='logo'>
           <img src='./images/fussek-logo-pinterest.png' alt='logo' className='logo' />
-        </a>
-        <a href='/' className='home'>
-          Home
         </a>
       </div>
       <div className='search'>
@@ -57,9 +53,6 @@ function Header(props) {
             <img src='https://avatars.githubusercontent.com/u/45184925?v=4' alt='' />
           </div>
         </a>
-        <div onClick={() => setShowDropdown(!showDropdown)} className='items-down'>
-          <img src='./images/down-arrow.png' alt='down' className='logo' />
-        </div>
       </div>
     </div>
   );

@@ -16,13 +16,48 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
   padding: 0.938rem;
+  background: white;
 }
+
+.pinterest:before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(-45deg, #ffffff -100%, #000000 -100%);
+  transform: translate3d(1px, 3px, 0) scale(0.84);
+  filter: blur(7px);
+  opacity: var(0.68);
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+/* 
+* Prevents issues when the parent creates a 
+* stacking context. (For example, using the transform
+* property )
+*/
+.pinterest::after {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
+}
+
 .left {
   display: flex;
   align-items: center;
-  width: 20%;
+  padding-left: 5%;
+  width: 15%;
   height: 5vh;
 }
 .left .logo {
@@ -30,8 +65,6 @@
   width: 3rem;
   height: 3rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .left .logo:hover {
   background-color: #e5e5e5;
@@ -40,18 +73,21 @@
   color: #e60022;
   font-size: 24px;
 }
-.left .home {
-  margin-left: 10%;
 
-  font-weight: bold;
-  height: 3rem;
-  color: #fff;
-  padding: 1rem;
-  background-color: #151515;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1.563rem;
+@media (max-width: 1024px) {
+  .pinterest {
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .avatar .img {
+    display: none;
+  }
+  .right {
+    align-items: end;
+  }
+  .right .items-down {
+    display: none;
+  }
 }
 .avatar {
   width: 3rem;
@@ -126,22 +162,4 @@
 .items i {
   font-size: 1rem;
   color: #767676;
-}
-.items-down {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-
-  cursor: pointer;
-}
-.items-down:hover {
-  background: #e5e5e5;
-}
-.items-down img {
-  width: 50%;
 }
