@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import LoadingIcon from './LoadingIcon';
-// import handleSubmit from '../firebase_setup/handleSubmit.js';
-// import { collection, addDoc, getDoc, updateDoc } from 'firebase/firestore';
-// import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-// import { firestore } from '../firebase_setup/firebase.js';
+import TagsCreator from './TagsCreator';
+
 import { savePinBackend } from '../firebase_setup/DatabaseOperations.js';
 import '../styles/modal_styles.css';
 let img_file;
@@ -67,6 +65,13 @@ function Modal(props) {
   const [showLabel, setShowLabel] = useState(true);
   const [showModalPin, setShowModalPin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [tags, setTags] = useState([]);
+  const addTag = (event) => {
+    if (event.target.value !== '') {
+      setTags([...tags, event.target.value]);
+      event.target.value = '';
+    }
+  };
 
   return (
     <div className='add_pin_modal'>
@@ -118,6 +123,10 @@ function Modal(props) {
             <input placeholder='Add your title' type='text' className='new_pin_input' id='pin_title' />
             <input placeholder='Describe what the Pin is about' type='text' className='new_pin_input' id='pin_description' />
             <input placeholder='Add a destination link' type='text' className='new_pin_input' id='pin_destination' />
+            <input placeholder='Add tags by clicking Enter' type='text' className='new_pin_input' id='pin_tags' onKeyUp={(event) => (event.key === 'Enter' ? addTag(event) : null)} />
+          </div>
+          <div className='section3'>
+            <TagsCreator tags={tags} setTags={setTags} />
           </div>
         </div>
       </div>
