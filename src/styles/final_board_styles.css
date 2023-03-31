@@ -3,7 +3,7 @@
   position: fixed;
   right: 5%;
   top: 8%;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 }
 
 @media (max-width: 1024px) {
@@ -76,7 +76,7 @@
   grid-auto-rows: 10px;
   justify-content: center;
   position: absolute;
-  top: 8%;
+  top: 10%;
   /* background-color: purple; */
 }
 

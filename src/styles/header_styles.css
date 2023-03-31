@@ -16,41 +16,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 1%;
   padding: 0.938rem;
-  background: white;
-}
-
-.pinterest:before {
-  content: '';
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(-45deg, #ffffff -100%, #000000 -100%);
-  transform: translate3d(1px, 3px, 0) scale(0.84);
-  filter: blur(7px);
-  opacity: var(0.68);
-  transition: opacity 0.3s;
-  border-radius: inherit;
-}
-
-/* 
-* Prevents issues when the parent creates a 
-* stacking context. (For example, using the transform
-* property )
-*/
-.pinterest::after {
-  content: '';
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: inherit;
-  border-radius: inherit;
+  /* background: white; */
 }
 
 .left {
@@ -87,6 +55,9 @@
   }
   .right .items-down {
     display: none;
+  }
+  .left {
+    padding-left: 0%;
   }
 }
 .avatar {
