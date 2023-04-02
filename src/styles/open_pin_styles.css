@@ -143,18 +143,41 @@
 
 #right_side_open .open_section .new_pin_input {
   width: 100%;
-  height: 400px;
+  /* height: 100%; */
+  padding-right: 20px;
+  text-align: justify;
+  height: 300px;
+  overflow-y: auto;
   border: none;
   /* border-bottom: 2px solid #c6c6c6; */
   outline: none;
+  margin-bottom: 20px;
 
   font-size: 16px;
 
   background-color: transparent;
 }
 
+.new_pin_input::-webkit-scrollbar {
+  padding-left: 2%;
+  width: 5px;
+}
+
+.new_pin_input::-webkit-scrollbar-track {
+  padding-left: 2%;
+  box-shadow: inset 0 0 5px rgb(232, 232, 232);
+  border-radius: 5px;
+}
+
+.new_pin_input::-webkit-scrollbar-thumb {
+  padding-left: 2%;
+  height: 30%;
+  background: #e60023b4;
+  border-radius: 5px;
+}
+
 #right_side_open .open_section .open_pin_title {
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   width: 100%;
   height: 50px;
   border: none;

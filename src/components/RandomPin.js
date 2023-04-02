@@ -6,11 +6,11 @@ export default async function RandomPin(event) {
   var random_pin = {
     author: 'Patryk',
     board: 'default',
-    title: 'The Journey',
-    description:
-      'Embarking on a journey can be both exciting and daunting. The anticipation of new experiences and adventures can fill one with a sense of wonder and joy, while the uncertainty of the unknown can also bring feelings of anxiety and trepidation. Whether its a physical journey to a far-off destination or a personal journey of self-discovery, every journey has the potential to bring growth, learning, and meaningful insights into our lives.',
-    destination: 'www.journey.com',
+    title: 'Random Pin',
+    description: await fetch('http://metaphorpsum.com/sentences/7').then((response) => response.text()),
+    destination: 'http://metaphorpsum.com/',
     pin_size: sizes[Math.floor(Math.random() * sizes.length)],
+    tags: ['Random', 'Generated', 'Pin', 'Example'],
   };
 
   let random_img = await fetch('https://source.unsplash.com/featured/1200x1600').then((r) => r.blob());

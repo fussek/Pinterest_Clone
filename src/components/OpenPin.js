@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EnlargeImg from './EnlargeImg';
 import '../styles/open_pin_styles.css';
+import TagsCreator from './TagsCreator';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -96,7 +97,8 @@ function OpenPin(props) {
             {/* <div className='save_card'>♡</div> */}
             <div className='open_pin_title'>{props.pinDetails.title}</div>
             <div className='new_pin_input'>{props.pinDetails.description}</div>
-            <div className='new_pin_input'>{props.pinDetails.destination}</div>
+            <TagsCreator tags={props.pinDetails.tags} editable={false} />
+            {/* <div className='new_pin_input'>{props.pinDetails.destination}</div> */}
           </div>
         </div>
       </div>

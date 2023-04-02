@@ -5,12 +5,14 @@ import { Dropdown, Button, Space, Tooltip } from 'antd';
 
 function filterResults(event, props) {
   let filteredPins = props.pinsToFilter.filter((pin) => {
-    return pin.props.pinDetails.title.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1;
+    let tags = JSON.stringify(pin.props.pinDetails.tags);
+    return tags.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1;
   });
   props.filterPins(filteredPins);
 }
 
 function Header(props) {
+  //todo: extract Dropdown definitions to separate file
   const items = [
     {
       label: <span>Profile</span>,

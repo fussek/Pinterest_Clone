@@ -236,6 +236,10 @@
   cursor: pointer;
 }
 
+#right_side .section2 {
+  height: 60%;
+}
+
 #right_side .section2 .new_pin_input {
   margin-bottom: 20px;
   width: 100%;
@@ -247,4 +251,14 @@
   font-size: 16px;
 
   background-color: transparent;
+}
+
+/* #right_side .section2 .new_pin_input #pin_description {
+  overflow-y: auto;
+  background-color: red;
+  border: red;
+} */
+
+#right_side .section3 {
+  height: 32%;
 }

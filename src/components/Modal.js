@@ -61,6 +61,7 @@ function Modal(props) {
     description: '',
     img_url: '',
     pin_size: '',
+    tags: [],
   });
   const [showLabel, setShowLabel] = useState(true);
   const [showModalPin, setShowModalPin] = useState(false);
@@ -69,6 +70,10 @@ function Modal(props) {
   const addTag = (event) => {
     if (event.target.value !== '') {
       setTags([...tags, event.target.value]);
+      setPinDetails({
+        ...pinDetails,
+        tags: tags,
+      });
       event.target.value = '';
     }
   };
@@ -126,7 +131,7 @@ function Modal(props) {
             <input placeholder='Add tags by clicking Enter' type='text' className='new_pin_input' id='pin_tags' onKeyUp={(event) => (event.key === 'Enter' ? addTag(event) : null)} />
           </div>
           <div className='section3'>
-            <TagsCreator tags={tags} setTags={setTags} />
+            <TagsCreator tags={tags} setTags={setTags} editable={true} />
           </div>
         </div>
       </div>
