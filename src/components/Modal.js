@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoadingIcon from './LoadingIcon';
 import TagsCreator from './TagsCreator';
 
@@ -53,6 +53,12 @@ async function savePin(setIsLoading, e, pinDetails, refreshPins) {
 
 function Modal(props) {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
   const [pinDetails, setPinDetails] = useState({
     author: '',
     board: '',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import EnlargeImg from './EnlargeImg';
 import '../styles/open_pin_styles.css';
 import TagsCreator from './TagsCreator';
@@ -46,6 +46,12 @@ function checkSize(event) {
 }
 
 function OpenPin(props) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   const [showLargeImg, setShowLargeImg] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
