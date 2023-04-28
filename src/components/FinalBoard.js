@@ -9,6 +9,7 @@ import LoadingIcon from './LoadingIcon';
 import { deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase_setup/firebase.js';
+import { Tooltip } from 'antd';
 
 import '../styles/final_board_styles.css';
 
@@ -124,18 +125,26 @@ class FinalBoard extends React.Component {
       <div>
         <Header pinsToFilter={this.state.pinsFromDb} filterPins={this.filterPins} setShowModal={this.setShowModal} />
         <div className='navigation_bar'>
-          <div tooltip='Add new Pin' onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container' id='add_pin'>
-            <img src='./images/add.png' alt='add_pin' className='pint_mock_icon' />
-          </div>
-          <div tooltip='Generate random Pin' onClick={(event) => this.generateRandomPin(event)} className='pint_mock_icon_container add_pin'>
-            <img src='./images/shuffle.png' alt='random' className='pint_mock_icon' />
-          </div>
-          <div tooltip='Refresh Pins' onClick={() => this.refreshPins()} className='pint_mock_icon_container add_pin'>
-            <img src='./images/refresh.png' alt='refresh' className='pint_mock_icon' />
-          </div>
-          <div tooltip='Show guidelines' onClick={() => alert('Guidelines are in the making :)')} className='pint_mock_icon_container add_pin'>
-            <img src='./images/help.png' alt='help' className='pint_mock_icon' />
-          </div>
+          <Tooltip title='Add new Pin'>
+            <div onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container' id='add_pin'>
+              <img src='./images/add.png' alt='add_pin' className='pint_mock_icon' />
+            </div>
+          </Tooltip>
+          <Tooltip title='Generate random Pin'>
+            <div onClick={(event) => this.generateRandomPin(event)} className='pint_mock_icon_container add_pin'>
+              <img src='./images/shuffle.png' alt='random' className='pint_mock_icon' />
+            </div>
+          </Tooltip>
+          <Tooltip title='Refresh Pins'>
+            <div onClick={() => this.refreshPins()} className='pint_mock_icon_container add_pin'>
+              <img src='./images/refresh.png' alt='refresh' className='pint_mock_icon' />
+            </div>
+          </Tooltip>
+          <Tooltip title='Show guidelines'>
+            <div onClick={() => this.setState({ show_guidelines: true })} className='pint_mock_icon_container add_pin'>
+              <img src='./images/help.png' alt='help' className='pint_mock_icon' />
+            </div>
+          </Tooltip>
         </div>
         <div className='pin_container' ref={this.animate}>
           {this.state.pinsToShow}

@@ -30,9 +30,11 @@ function Header(props) {
   return (
     <div className='pinterest'>
       <div className='left'>
-        <a href='/' className='logo'>
-          <img src='./images/fussek-logo-pinterest.png' alt='logo' className='logo' />
-        </a>
+        <Tooltip title='Homepage'>
+          <a href='/' className='logo'>
+            <img src='./images/fussek-logo-pinterest.png' alt='logo' className='logo' />
+          </a>
+        </Tooltip>
       </div>
       <div className='search'>
         <img src='./images/loupe.png' alt='loupe' style={{ maxHeight: '50%', paddingLeft: '15px', paddingRight: '10px', opacity: '0.5' }} />
@@ -50,11 +52,13 @@ function Header(props) {
             </Space>
           </Dropdown>
         </div>
-        <a href='/' className='avatar'>
-          <div className='img'>
-            <img src='https://avatars.githubusercontent.com/u/45184925?v=4' alt='' />
-          </div>
-        </a>
+        <Tooltip title='Profile'>
+          <a href='/' className='avatar'>
+            <div className='img'>
+              <img src='https://avatars.githubusercontent.com/u/45184925?v=4' alt='' />
+            </div>
+          </a>
+        </Tooltip>
       </div>
     </div>
   );

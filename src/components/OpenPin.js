@@ -48,9 +48,11 @@ function checkSize(event) {
 function OpenPin(props) {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   const [showLargeImg, setShowLargeImg] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
+
   const items = [
     {
-      label: <span>Edit</span>,
+      label: <span onClick={() => setIsEditable(!isEditable)}>Edit</span>,
       key: '0',
     },
     {
@@ -73,9 +75,11 @@ function OpenPin(props) {
         <div className='side' id='left_side_open'>
           <div className='open_section'>
             <div className='open_modals_pin'>
-              <div className='open_pin_image' onClick={() => setShowLargeImg(!showLargeImg)}>
-                {showLargeImg ? null : <img onLoad={checkSize} src={props.pinDetails.img_url} alt='pin_image' />}
-              </div>
+              <Tooltip title='Click to enlarge image' placement='bottom'>
+                <div className='open_pin_image' onClick={() => setShowLargeImg(!showLargeImg)}>
+                  {showLargeImg ? null : <img onLoad={checkSize} src={props.pinDetails.img_url} alt='pin_image' />}
+                </div>
+              </Tooltip>
             </div>
           </div>
         </div>
@@ -97,7 +101,7 @@ function OpenPin(props) {
             {/* <div className='save_card'>♡</div> */}
             <div className='open_pin_title'>{props.pinDetails.title}</div>
             <div className='new_pin_input'>{props.pinDetails.description}</div>
-            <TagsCreator tags={props.pinDetails.tags} editable={false} />
+            <TagsCreator tags={props.pinDetails.tags} editable={isEditable} />
             {/* <div className='new_pin_input'>{props.pinDetails.destination}</div> */}
           </div>
         </div>

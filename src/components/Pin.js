@@ -79,7 +79,9 @@ function Pin(props) {
 
       <div onClick={() => openPin(props.pinDetails, props.openPin)} className='pin_modal'>
         <div className='modal_head'>
-          <div className='save_card'>♡</div>
+          <Tooltip title='Add to favourites'>
+            <div className='save_card'>♡</div>
+          </Tooltip>
         </div>
 
         <div className='modal_foot'>
@@ -88,7 +90,9 @@ function Pin(props) {
               <div className='pint_mock_icon_container'>
                 <img src='./images/upper-right-arrow.png' alt='destination' className='pint_mock_icon' />
               </div>
-              <span>{props.pinDetails.destination}</span>
+              <Tooltip title='Open link in new tab'>
+                <span>{props.pinDetails.destination}</span>
+              </Tooltip>
             </div>
           </a>
           <div onClick={(e) => handleDropdownCLick(e, setShowDropdown, showDropdown)} className='pint_mock_icon_container'>
