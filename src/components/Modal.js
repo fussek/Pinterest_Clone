@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import LoadingIcon from './LoadingIcon';
 import TagsCreator from './TagsCreator';
+import ReactJoyride from 'react-joyride';
+import { ModalSteps } from './Guidelines';
 
 import { savePinBackend } from '../firebase_setup/DatabaseOperations.js';
 import '../styles/modal_styles.css';
@@ -52,9 +54,11 @@ async function savePin(setIsLoading, e, pinDetails, refreshPins) {
 }
 
 function Modal(props) {
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    if (window.onscrollend !== undefined) {
+      document.body.style.overflow = 'hidden';
+    }
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -72,7 +76,7 @@ function Modal(props) {
   const [showLabel, setShowLabel] = useState(true);
   const [showModalPin, setShowModalPin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(['Default', 'Pin']);
   const addTag = (event) => {
     if (event.target.value !== '') {
       setTags([...tags, event.target.value]);
@@ -95,7 +99,7 @@ function Modal(props) {
           </div>
           <div className='section2'>
             <label htmlFor='upload_img' id='upload_img_label' style={{ display: showLabel ? 'block' : 'none' }}>
-              <div className='upload_img_container'>
+              <div className='upload_img_container' id='upload_img_container'>
                 <div id='dotted_border'>
                   <div className='pint_mock_icon_container'>
                     <img src='./images/up-arrow.png' alt='upload_img' className='pint_mock_icon' />
@@ -119,7 +123,7 @@ function Modal(props) {
         </div>
         <div className='side' id='right_side'>
           <div className='section1'>
-            <div className='select_size'>
+            <div className='select_size' id='select_size'>
               <select defaultValue='medium' name='pin_size' id='pin_size'>
                 <option value='small'>Small</option>
                 <option value='medium'>Medium</option>
@@ -130,18 +134,35 @@ function Modal(props) {
               </div>
             </div>
           </div>
-          <div className='section2'>
+          <div className='section2' id='pin_details'>
             <input placeholder='Add your title' type='text' className='new_pin_input' id='pin_title' />
             <input placeholder='Describe what the Pin is about' type='text' className='new_pin_input' id='pin_description' />
             <input placeholder='Add a destination link' type='text' className='new_pin_input' id='pin_destination' />
             <input placeholder='Add tags by clicking Enter' type='text' className='new_pin_input' id='pin_tags' onKeyUp={(event) => (event.key === 'Enter' ? addTag(event) : null)} />
           </div>
-          <div className='section3'>
+          <div className='section3' id='tags_container'>
             <TagsCreator tags={tags} setTags={setTags} editable={true} />
           </div>
         </div>
       </div>
       {isLoading ? <LoadingIcon /> : null}
+      <ReactJoyride
+        continuous
+        hideCloseButton
+        scrollToFirstStep
+        disableScrolling={true}
+        showProgress
+        showSkipButton
+        // stepIndex={0}
+        steps={ModalSteps}
+        styles={{
+          options: {
+            primaryColor: '#ff0400',
+            textColor: '#004a14',
+            zIndex: 1000,
+          },
+        }}
+      />
     </div>
   );
 }

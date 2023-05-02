@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import EnlargeImg from './EnlargeImg';
 import '../styles/open_pin_styles.css';
 import TagsCreator from './TagsCreator';
-
+import ReactJoyride from 'react-joyride';
+import { OpenPinSteps } from './Guidelines';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { MoreOutlined } from '@ant-design/icons';
@@ -91,7 +92,7 @@ function OpenPin(props) {
         </div>
 
         <div className='side' id='right_side_open'>
-          <div className='options_icon_container'>
+          <div className='options_icon_container' id='options_icon'>
             <Dropdown menu={{ items }} trigger={['click']}>
               <Space direction='vertical'>
                 <Space wrap>
@@ -112,6 +113,23 @@ function OpenPin(props) {
           </div>
         </div>
       </div>
+      <ReactJoyride
+        continuous
+        hideCloseButton
+        scrollToFirstStep
+        disableScrolling={true}
+        showProgress
+        showSkipButton
+        // stepIndex={0}
+        steps={OpenPinSteps}
+        styles={{
+          options: {
+            primaryColor: '#ff0400',
+            textColor: '#004a14',
+            zIndex: 1000,
+          },
+        }}
+      />
     </div>
   );
 }

@@ -4,8 +4,9 @@ import Pin from './Pin.js';
 import Modal from './Modal.js';
 import OpenPin from './OpenPin.js';
 import Header from './Header';
-import Guidelines from './Guidelines.js';
+import { Guidelines, FinalBoardSteps } from './Guidelines.js';
 import LoadingIcon from './LoadingIcon';
+import ReactJoyride from 'react-joyride';
 import { deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase_setup/firebase.js';
@@ -122,9 +123,11 @@ class FinalBoard extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header pinsToFilter={this.state.pinsFromDb} filterPins={this.filterPins} setShowModal={this.setShowModal} />
-        <div className='navigation_bar'>
+      <div style={{ overflow: 'hidden' }} ref={this.windowRef}>
+        <div class='header_container' id='header_bar'>
+          <Header pinsToFilter={this.state.pinsFromDb} filterPins={this.filterPins} setShowModal={this.setShowModal} />
+        </div>
+        <div className='navigation_bar' id='navigation_bar'>
           <Tooltip title='Add new Pin'>
             <div onClick={() => this.setState({ show_modal: true })} className='pint_mock_icon_container' id='add_pin'>
               <img src='./images/add.png' alt='add_pin' className='pint_mock_icon' />
@@ -146,7 +149,7 @@ class FinalBoard extends React.Component {
             </div>
           </Tooltip>
         </div>
-        <div className='pin_container' ref={this.animate}>
+        <div className='pin_container' ref={this.animate} id='pin_container'>
           {this.state.pinsToShow}
         </div>
         <div onClick={(event) => (event.target.className === 'add_pin_modal' ? this.setState({ show_modal: false }) : null)} className='add_pin_modal_container'>
@@ -159,6 +162,22 @@ class FinalBoard extends React.Component {
           {this.state.show_guidelines ? <Guidelines /> : null}
         </div>
         {this.state.show_loading ? <LoadingIcon /> : null}
+        <ReactJoyride
+          continuous
+          hideCloseButton
+          scrollToFirstStep
+          disableScrolling={true}
+          showProgress
+          showSkipButton
+          steps={FinalBoardSteps}
+          styles={{
+            options: {
+              primaryColor: '#ff0400',
+              textColor: '#004a14',
+              zIndex: 1000,
+            },
+          }}
+        />
       </div>
     );
   }
