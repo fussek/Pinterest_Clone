@@ -115,12 +115,10 @@ function OpenPin(props) {
       </div>
       <ReactJoyride
         continuous
-        hideCloseButton
         scrollToFirstStep
         disableScrolling={true}
         showProgress
         showSkipButton
-        // stepIndex={0}
         steps={OpenPinSteps}
         styles={{
           options: {

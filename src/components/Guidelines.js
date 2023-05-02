@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/guidelines_styles.css';
 
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
@@ -7,26 +7,26 @@ import { Button } from 'antd';
 export const FinalBoardSteps = [
   {
     title: 'Welcome :)',
-    content: 'Follow this quick tutorial to go through all the functionalities smoothly',
+    content: 'Hi there 👋. Welcome to my website 😊. Let these small pop-ups guide you through the navigation 🗺️, so you can enjoy the full experience 📌. Lets get started!',
     target: '#root',
     placement: 'center',
   },
   {
     title: 'Pin board',
     content:
-      'This is your pins board, from here you can browse all your saved pins, highlight your favorite ones or delete those unwanted. The layout is responsive, so the pins will re-arrange themselves automatically if the window size changes.',
+      'This is your pins board, from here you can browse all your saved pins 📌, highlight favorite ones 🧡 or delete those unwanted 🗑️. The layout is responsive, so the pins will re-arrange themselves automatically according to window size ⚙️.',
     target: '#pin_container',
     placement: 'top-end',
   },
   {
     title: 'Control buttons',
-    content: 'Those are the control buttons, you can upload a new pin to the table, generate a random pin, refresh the table if needed or open help dialogue.',
+    content: 'Those are the control buttons, you can upload a new pin to the board ➕, generate a random pin 🎲, refresh the table if needed 🔄 or open the guidelines dialogue ❓.',
     target: '#navigation_bar',
     placement: 'auto',
   },
   {
     title: 'Header bar',
-    content: 'Use search bar to browse through available pins. The search bar is dynamic, so the pins will get fitered according to your search criterias right away :)',
+    content: 'Use search bar to browse through available pins 🔍. The search works dynamically, so the pins will get fitered accordingly as you type 😊.',
     target: '#header_bar',
     placement: 'bottom',
   },
@@ -34,57 +34,57 @@ export const FinalBoardSteps = [
 export const ModalSteps = [
   {
     title: 'Adding new pin',
-    content: 'Here you can upload a new pin from your device.',
+    content: 'Here you can upload a new pin from your local storage 💾.',
     target: '#root',
     placement: 'center',
   },
   {
     title: 'Upload image',
-    content: 'Those are the control buttons, you can upload a new pin to the table, generate a random pin, refresh the table if needed or open help dialogue.',
+    content: 'Click here to upload your image 📁. It is best to use high quality images, but not larger than 20MBs 📷.',
     target: '#upload_img_container',
     placement: 'right',
   },
   {
-    title: 'Control buttons',
-    content: 'Those are the control buttons, you can upload a new pin to the table, generate a random pin, refresh the table if needed or open help dialogue.',
+    title: 'Pin details',
+    content: 'In here you input the details about the pin 📜, such as title, destination URL, description as well as tags #️⃣, based on which user browses through the pins 📌.',
     target: '#pin_details',
     placement: 'auto',
   },
   {
-    title: 'Header bar',
-    content: 'Use search bar to browse through available pins',
+    title: 'Tags section',
+    content: 'This is the tags section #️⃣, you can add new tags by typing words and clicking Enter, or delete them by clicking on the white cross.',
     target: '#tags_container',
     placement: 'auto',
   },
   {
-    title: 'Header bar',
-    content: 'Use search bar to browse through available pins',
+    title: 'Size of the pin',
+    content: 'Select the desired size of the pin, there are 3 sizes available - small, medium and large 📐. The Pin is uploaded by clicking Save button.',
     target: '#select_size',
     placement: 'auto',
   },
 ];
 export const OpenPinSteps = [
   {
-    title: 'Pin window',
-    content: 'From here you can read the details of saved pin and edit/delete it.',
+    title: 'Open Pin window',
+    content: 'From here you can read the details of saved pin 📌 and edit/delete it.',
     target: '#root',
     placement: 'center',
   },
   {
     title: 'Enlarge image',
-    content: 'Click here to view the image in its full size',
+    content: 'Click here to enlarge the image to its original size 🔎.',
     target: '#left_side_open',
     placement: 'right',
   },
   {
     title: 'Pin details',
-    content: 'Here are the details of the pin',
+    content: 'Here are the details 📜 of the pin.',
     target: '#right_side_open',
     placement: 'left',
   },
   {
     title: 'Options icon',
-    content: 'Click to toggle editing mode or delete pin',
+    content: 'Click to toggle editing mode ✍️ or delete pin 🗑️.',
     target: '#options_icon',
     placement: 'left',
   },

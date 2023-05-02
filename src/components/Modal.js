@@ -148,12 +148,10 @@ function Modal(props) {
       {isLoading ? <LoadingIcon /> : null}
       <ReactJoyride
         continuous
-        hideCloseButton
         scrollToFirstStep
         disableScrolling={true}
         showProgress
         showSkipButton
-        // stepIndex={0}
         steps={ModalSteps}
         styles={{
           options: {
