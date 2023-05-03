@@ -49,7 +49,7 @@ async function savePin(setIsLoading, e, pinDetails, refreshPins) {
 
   await savePinBackend(e, users_data, img_file);
 
-  refreshPins(users_data);
+  refreshPins();
   setIsLoading(false);
 }
 

@@ -35,7 +35,7 @@ class FinalBoard extends React.Component {
     this.fetchPins();
     this.animate.current && autoAnimate(this.animate.current);
   }
-  //todo: extract setting state method, for the love of god
+
   fetchPins = async () => {
     //todo: figure out extracting this to DatabaseOperations.js
     await getDocs(collection(firestore, 'pins')).then((querySnapshot) => {
@@ -44,88 +44,43 @@ class FinalBoard extends React.Component {
       newData.forEach((p) => {
         fetchedPins.push(<Pin pinDetails={p} key={p.id} openPin={this.openPin} deletePin={this.deletePin} />);
       });
-      this.setState((_state) => {
-        return {
-          ..._state,
-          pinsFromDb: fetchedPins,
-          pinsToShow: fetchedPins,
-        };
-      });
+      this.setState({ pinsFromDb: fetchedPins, pinsToShow: fetchedPins });
     });
   };
-  //todo: extract setting state method, for the love of god
+
   refreshPins = async () => {
-    this.setState((_state) => {
-      return {
-        ..._state,
-        show_modal: false,
-      };
-    });
+    this.setState({ show_modal: false });
     await this.fetchPins();
   };
-  //todo: extract setting state method, for the love of god
+
   openPin = (pinDetails) => {
     this.pinDetails = pinDetails;
-    this.setState((_state) => {
-      return {
-        ..._state,
-        show_open_pin: true,
-      };
-    });
+    this.setState({ show_open_pin: true });
   };
-  //todo: extract setting state method, for the love of god
+
   deletePin = async (pinDetails) => {
     //todo: add loading mode and/or transition state (blur the pin, fade it out etc)
     await deletePinBackend(pinDetails);
     await this.fetchPins();
-    this.setState((_state) => {
-      return {
-        ..._state,
-        show_open_pin: false,
-      };
-    });
+    this.setState({ show_open_pin: false });
   };
-  //todo: extract setting state method, for the love of god
+
   generateRandomPin = async (event) => {
-    this.setState((_state) => {
-      return {
-        ..._state,
-        show_loading: true,
-      };
-    });
+    this.setState({ show_loading: true });
     await RandomPin(event);
-    await this.refreshPins();
-    this.setState((_state) => {
-      return {
-        ..._state,
-        show_loading: false,
-      };
-    });
+    await this.fetchPins();
+    this.setState({ show_loading: false });
   };
-  //todo: extract setting state method, for the love of god
-  setShowModal = (showState) => {
-    this.setState((_state) => {
-      return {
-        ..._state,
-        show_modal: showState,
-      };
-    });
-  };
-  //todo: extract setting state method, for the love of god
+
   filterPins = (filteredPins) => {
-    this.setState((_state) => {
-      return {
-        ..._state,
-        pinsToShow: filteredPins,
-      };
-    });
+    this.setState({ pinsToShow: filteredPins });
   };
 
   render() {
     return (
       <div style={{ overflow: 'hidden' }} ref={this.windowRef}>
         <div class='header_container' id='header_bar'>
-          <Header pinsToFilter={this.state.pinsFromDb} filterPins={this.filterPins} setShowModal={this.setShowModal} />
+          <Header pinsToFilter={this.state.pinsFromDb} filterPins={this.filterPins} />
         </div>
         <div className='navigation_bar' id='navigation_bar'>
           <Tooltip title='Add new Pin'>
