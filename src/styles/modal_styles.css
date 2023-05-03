@@ -262,3 +262,35 @@
 #right_side .section3 {
   height: 32%;
 }
+
+@media (max-width: 1024px) {
+  .add_pin_container {
+    width: 90%;
+    height: 80%;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+  }
+
+  .section2 {
+    padding: 0%;
+  }
+
+  #left_side {
+    padding: 0%;
+  }
+
+  #left_side .section3 .save_from_site {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  #right_side {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tags-input {
+    width: 90%;
+  }
+}

@@ -189,3 +189,62 @@
 
   background-color: transparent;
 }
+
+@media (max-width: 1024px) {
+  .open_pin_container {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+  .open_section {
+    display: inherit;
+    padding: 0%;
+  }
+
+  .side {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .open_modals_pin {
+    width: 100%;
+  }
+
+  .open_pin_max_width {
+    border-radius: 16px;
+  }
+
+  .open_pin_max_height {
+    border-radius: 16px;
+  }
+
+  .right_side_open {
+    width: 90%;
+  }
+
+  #right_side_open {
+    padding-right: 0%;
+    display: inherit;
+    width: 90%;
+  }
+  .tags-input {
+    width: 90%;
+  }
+
+  .options_icon_container {
+    position: fixed;
+    transform: translate(1250%, 1500%);
+  }
+
+  .options_icon {
+    position: inherit;
+  }
+
+  .options_icon_container:hover {
+    position: inherit;
+  }
+}
