@@ -194,6 +194,7 @@
   .open_pin_container {
     width: 90%;
     height: 80%;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -204,13 +205,14 @@
   }
 
   .side {
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
     justify-content: center;
     width: 100%;
   }
 
   .open_modals_pin {
+    max-height: 100%;
     width: 100%;
   }
 
@@ -223,13 +225,13 @@
   }
 
   .right_side_open {
-    width: 90%;
+    padding: 15px;
   }
 
   #right_side_open {
-    padding-right: 0%;
+    padding: 10%;
     display: inherit;
-    width: 90%;
+    height: 90%;
   }
   .tags-input {
     width: 90%;

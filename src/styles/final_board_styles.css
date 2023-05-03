@@ -107,7 +107,8 @@
 
 @media (max-width: 1024px) {
   .navigation_bar {
-    width: 7%;
+    z-index: 200;
+    width: 15%;
     position: fixed;
     padding-top: 30%;
   }
