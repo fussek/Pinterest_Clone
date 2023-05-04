@@ -6,15 +6,6 @@
   /* background-color: aquamarine; */
 }
 
-@media (max-width: 1024px) {
-  .navigation_bar {
-    position: absolute;
-    clip: rect(0px, 200, 200px, 0px);
-    padding-right: 5%;
-    padding-top: 30%;
-  }
-}
-
 .navigation_bar .pint_mock_icon_container {
   width: 60px;
   height: 60px;
@@ -98,4 +89,37 @@
 
 .card_large {
   grid-row-end: span 45;
+}
+
+.header_container {
+  z-index: 30;
+  position: fixed;
+  height: 8%;
+  top: 0;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1%;
+  padding: 0.938rem;
+  /* background: white; */
+}
+
+@media (max-width: 1024px) {
+  .navigation_bar {
+    z-index: 200;
+    width: 15%;
+    position: fixed;
+    padding-top: 30%;
+  }
+
+  .navigation_bar .pint_mock_icon_container {
+    transform: scale(0.7);
+    position: relative;
+    transition-duration: 0.3s;
+  }
+
+  .pin_container {
+    width: 90%;
+  }
 }
