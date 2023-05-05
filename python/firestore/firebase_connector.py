@@ -17,8 +17,11 @@ class FirebaseConnector:
             self.config = yaml.safe_load(f)
 
         self.collection = collection
-        self.cred = credentials.Certificate(self.config['secret_key_path'])
-        self.app = firebase_admin.initialize_app(self.cred, options=self.config)
+        try:
+            self.app = firebase_admin.get_app()
+        except ValueError as e:
+            self.cred = credentials.Certificate(self.config['secret_key_path'])
+            self.app = firebase_admin.initialize_app(self.cred, options=self.config)
         # Initialize the firestore module
         self.firestore_client = firestore.client()
         self.coll_ref = self.get_collection_reff(self.collection)
