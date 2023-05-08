@@ -7,7 +7,7 @@ from firebase_admin import delete_app
 
 from data_preparation.get_raw_images import ImageDownloader
 
-FIREBASE_CONFIG_PATH = Path('../firebase_config.yaml')
+FIREBASE_CONFIG_PATH = Path('firebase_config.yaml')
 PINS_COLLECTION = 'pins'
 EXAMPLE_IMG_URL = 'https://fastly.picsum.photos/id/741/200/300.jpg?hmac=xaQ9kS4D9YUXp1ih8_9I1Bo0GlrWrUW2UxRv52xf8dU'
 EXAMPLE_ID_URL_DICT = {'img1': 'https://example.com/img1.png', 'img2': 'https://example.com/img2.png'}

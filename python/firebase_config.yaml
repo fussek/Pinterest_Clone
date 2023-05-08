@@ -1,4 +1,4 @@
-secret_key_path: '../firestore/secret_key.json'
+secret_key_path: 'secret_key.json'
 apiKey: 'AIzaSyD3RvSISD0ONgIlcigtVAobcGxYn35kcQQ'
 authDomain: 'check-this-out-firebase.firebaseapp.com'
 projectId: 'check-this-out-firebase'

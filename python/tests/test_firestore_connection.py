@@ -5,7 +5,7 @@ from firebase_admin import App, credentials, delete_app
 
 from firestore.firebase_connector import FirebaseConnector, PINS_COLLECTION
 
-FIREBASE_CONFIG_PATH = Path('../firebase_config.yaml')
+FIREBASE_CONFIG_PATH = Path('firebase_config.yaml')
 
 
 @pytest.fixture
