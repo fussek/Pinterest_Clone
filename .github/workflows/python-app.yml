@@ -27,6 +27,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r python/requirements.txt
         # Run the tests. I'm using pytest and the files are in the tests/ directory.
+        # TODO: Find a way to mock a secret_key.json to run other tests with Github Actions
       - name: Run tests
         working-directory: ./python
-        run: pytest tests/
+        run: pytest tests/test_image_preprocessing.py
