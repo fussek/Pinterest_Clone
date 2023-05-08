@@ -24,8 +24,9 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
       # Install the package using the setup.py
-      - name: Install package
-        run: python python/setup.py install
+      - name: Install dependencies
+#        run: python python/setup.py install
+        run: pip install -r python/requirements.txt
         # Run the tests. I'm using pytest and the files are in the tests/ directory.
       - name: Run tests
         run: pytest python/tests/test_image_preprocessing.py
