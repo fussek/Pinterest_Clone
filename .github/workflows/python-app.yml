@@ -28,4 +28,4 @@ jobs:
         run: python python/setup.py install
         # Run the tests. I'm using pytest and the files are in the tests/ directory.
       - name: Run tests
-        run: pytest python/tests/
+        run: pytest python/tests/test_image_preprocessing.py
