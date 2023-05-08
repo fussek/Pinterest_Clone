@@ -14,6 +14,7 @@ setup(
         'Pillow==9.5.0',
         'pytest==7.3.1',
         'numpy==1.24.3',
+        'google-cloud-firestore==2.11.1',
     ],
     python_requires="==3.10",
 )
