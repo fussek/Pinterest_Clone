@@ -18,5 +18,5 @@ if __name__ == '__main__':
     img_urls = img_downloader.get_images_urls()
     img_downloader.get_images(img_urls)
 
-    image_preprocessor = ImagePreprocessor(RAW_IMAGES_DIR, PROCESSED_IMAGES_DIR, IMG_WIDTH, IMG_HEIGHT)
-    image_preprocessor.preprocess_images()
+    image_preprocessor = ImagePreprocessor(IMG_WIDTH, IMG_HEIGHT)
+    image_preprocessor.preprocess_images(RAW_IMAGES_DIR, PROCESSED_IMAGES_DIR)
