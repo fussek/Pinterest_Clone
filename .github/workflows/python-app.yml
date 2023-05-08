@@ -28,4 +28,5 @@ jobs:
         run: pip install -r python/requirements.txt
         # Run the tests. I'm using pytest and the files are in the tests/ directory.
       - name: Run tests
+        working-directory: ./python
         run: pytest python/tests/
