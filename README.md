@@ -1,4 +1,5 @@
-# << WORK IN PROGRESS>>
+![PINTEREST CLONE (2)](https://github.com/fussek/Pinterest_Clone/assets/45184925/90aac7ac-7305-4e4c-a834-2f74033ca7f8)
+
 # https://instajumper.netlify.app/
 ### Welcome to my Pinterest inspired website project!
   My platform allows users to create their own unique pins and keep them on a pinboard, where they can store and organize their favorite images and inspirations from the web, as well as discover new ones uploaded by other users. This project is my sandbox for learning & implementing newly taught coding skills & best practices. The tech stack includes React.js, Javascript, HTML/CSS, REST, Firebase and Firestore.   
