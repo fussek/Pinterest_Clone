@@ -1,4 +1,4 @@
-![PINTEREST CLONE (2)](https://github.com/fussek/Pinterest_Clone/assets/45184925/90aac7ac-7305-4e4c-a834-2f74033ca7f8)
+![PINTEREST CLONE (3)](https://github.com/fussek/Pinterest_Clone/assets/45184925/d0f5a707-f500-47ef-a4f3-41194e2d5da6)
 
 # https://instajumper.netlify.app/
 ### Welcome to my Pinterest inspired website project!
