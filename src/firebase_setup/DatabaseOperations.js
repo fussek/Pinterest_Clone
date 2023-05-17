@@ -4,6 +4,21 @@ import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'fire
 import { firestore } from '../firebase_setup/firebase.js';
 import imageCompression from 'browser-image-compression';
 
+export async function fetchPinsBackend() {
+  let fetchedPins = [];
+  try {
+    await getDocs(collection(firestore, 'pins')).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      newData.forEach((p) => {
+        fetchedPins.push(p);
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  return fetchedPins;
+}
+
 export async function savePinBackend(e, users_data, imageFile) {
   let doc_snap;
   e.preventDefault();
@@ -75,10 +90,6 @@ export async function deletePinBackend(pin_details) {
   }
 }
 
-export async function fetchPinsBackend() {
-  //todo: initialize this (not working so far)
-  await getDocs(collection(firestore, 'pins')).then((querySnapshot) => {
-    const fetchedData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    return fetchedData;
-  });
+export async function updatePinBackend(e, users_data) {
+  //placeholer
 }

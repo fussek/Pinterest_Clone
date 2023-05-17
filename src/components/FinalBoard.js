@@ -7,9 +7,7 @@ import Header from './Header';
 import { Guidelines, FinalBoardSteps } from './Guidelines.js';
 import LoadingIcon from './LoadingIcon';
 import ReactJoyride from 'react-joyride';
-import { deletePinBackend } from '../firebase_setup/DatabaseOperations.js';
-import { collection, getDocs } from 'firebase/firestore';
-import { firestore } from '../firebase_setup/firebase.js';
+import { deletePinBackend, fetchPinsBackend } from '../firebase_setup/DatabaseOperations.js';
 import { Tooltip } from 'antd';
 
 import '../styles/final_board_styles.css';
@@ -37,14 +35,17 @@ class FinalBoard extends React.Component {
   }
 
   fetchPins = async () => {
-    //todo: figure out extracting this to DatabaseOperations.js
-    await getDocs(collection(firestore, 'pins')).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      let fetchedPins = [];
-      newData.forEach((p) => {
-        fetchedPins.push(<Pin pinDetails={p} key={p.id} openPin={this.openPin} deletePin={this.deletePin} />);
-      });
-      this.setState({ pinsFromDb: fetchedPins, pinsToShow: fetchedPins });
+    let pinsArray = [];
+    let fetchedPins = await fetchPinsBackend().catch((error) => console.error(error));
+    fetchedPins.forEach((p) => {
+      pinsArray.push(<Pin pinDetails={p} key={p.id} openPin={this.openPin} deletePin={this.deletePin} />);
+    });
+    this.setState((_state) => {
+      return {
+        ..._state,
+        pinsFromDb: pinsArray,
+        pinsToShow: pinsArray,
+      };
     });
   };
 
