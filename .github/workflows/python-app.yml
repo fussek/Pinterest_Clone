@@ -1,0 +1,33 @@
+name: Run python tests
+on:
+  push:
+    branches: [ "master"]
+  pull_request:
+    branches: [ "master"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the latest code from the repo
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        # Setup which version of Python to use
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      # Display the Python version being used
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      # Install dependencies from requirements.txt
+      - name: Install dependencies
+        run: pip install -r python/requirements.txt
+        # Run the tests. I'm using pytest and the files are in the tests/ directory.
+        # TODO: Find a way to mock a secret_key.json to run other tests with Github Actions
+      - name: Run tests
+        working-directory: ./python
+        run: pytest tests/test_image_preprocessing.py

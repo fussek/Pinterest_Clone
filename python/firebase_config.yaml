@@ -1,0 +1,8 @@
+secret_key_path: 'secret_key.json'
+apiKey: 'AIzaSyD3RvSISD0ONgIlcigtVAobcGxYn35kcQQ'
+authDomain: 'check-this-out-firebase.firebaseapp.com'
+projectId: 'check-this-out-firebase'
+storageBucket: 'check-this-out-firebase.appspot.com'
+messagingSenderId: '96081109520'
+appId: '1:96081109520:web:6de8d38c0df27064a12095'
+measurementId: 'G-29PMLSQ376'
